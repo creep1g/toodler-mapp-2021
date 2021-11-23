@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { View }
 from 'react-native';
 import Toolbar from '../../components/Toolbar';
@@ -7,12 +7,27 @@ import data from '../../resources/data.json';
 import styles from './styles';
 
 const Board = ({ navigation: { navigate } }) => {
-    return (
+    
+	const [boards, setBoards] = useState(data.boards);
+	
+	const [selectedBoards, setSelectedBoards] = useState([]);
+	
+	const onBoardLongPress = name => {
+		if (selectedBoards.indexOf(name) !== -1) {
+			setSelectedBoards(selectedBoards.filter(board => board !== name));
+		}
+		else{
+			setSelectedBoards([...selectedBoards, name]);
+		}
+	};
+
+	return (
       <View style={{ flex: 1 }}>
         <Toolbar />
         <View style={styles.boardList}>
-          <BoardList boards={data.boards} />
-        </View>
+			<BoardList onLongPress={name => onBoardLongPress(name)} selectedBoards={selectedBoards} boards={boards}  />
+		</View>
+
       </View>
     );
 };

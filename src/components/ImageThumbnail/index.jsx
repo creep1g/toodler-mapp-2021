@@ -1,12 +1,20 @@
 import React from 'react';
-import { View, Image, Text, TouchableHighlight } from 'react-native';
+import { View, Image, Text, TouchableOpacity } from 'react-native';
 import styles from './styles';
+import { AntDesign } from '@expo/vector-icons';
 
-const ImageThumbnail = function ({ file, name, id}) {
+const ImageThumbnail = function ({ file, name, id, onLongPress, isSelected}) {
   return (
-	  // Haven't figured this one out!
-	<TouchableHighlight onPress={() => { navigate('List'); }}>
-	  <View style={styles.view}>
+	  <TouchableOpacity
+		onLongPress={() => onLongPress(name)} >
+		  {
+		  	isSelected
+		  		?
+		 		<AntDesign name="checkcircleo" />
+				:
+		    	<></>
+		  }
+		  <View style={{opacity: isSelected ? .5 : 1}}>
 			<Image
 			style={styles.image}
 			resizeMode="cover"
@@ -14,7 +22,7 @@ const ImageThumbnail = function ({ file, name, id}) {
 			/>
 			<Text style={styles.text}> { name } </Text>
 	</View>
-	</TouchableHighlight>
+	</TouchableOpacity>
   );
 };
 
