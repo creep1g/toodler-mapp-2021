@@ -2,7 +2,7 @@ import React from 'react';
 import {
   View, Text, TouchableHighlight, Image,
 } from 'react-native';
-import logo from '../../resources/main_logo.png';
+import logo from '../../resources/main_logo.jpg';
 import styles from './styles';
 
 const Main = function ({ navigation: { navigate } }) {
@@ -12,7 +12,7 @@ const Main = function ({ navigation: { navigate } }) {
       <Text style={styles.paragraph}> Toddler!! </Text>
       <TouchableHighlight
         style={styles.button}
-        onPress={() => { navigate('Board'); }}
+		  onPress={() => { navigate('Board'); }}
       >
         <Text style={styles.buttonText}>To boards</Text>
       </TouchableHighlight>

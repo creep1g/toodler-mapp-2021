@@ -11,6 +11,8 @@
     "lint": "node node_modules/eslint/bin/eslint.js **/*.jsx"
   },
   "dependencies": {
+    "@react-navigation/native": "^6.0.6",
+    "@react-navigation/stack": "^6.0.11",
     "expo": "~43.0.2",
     "expo-status-bar": "~1.1.0",
     "prop-types": "^15.7.2",

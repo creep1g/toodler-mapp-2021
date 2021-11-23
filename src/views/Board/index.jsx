@@ -1,14 +1,12 @@
 import React from 'react';
-import {
-  View, Text,
-} from 'react-native';
+import { View }
+from 'react-native';
 import Toolbar from '../../components/Toolbar';
 import BoardList from '../../components/BoardList';
 import data from '../../resources/data.json';
 import styles from './styles';
 
-class Board extends React.Component {
-  render() {
+const Board = ({ navigation: { navigate } }) => {
     return (
       <View style={{ flex: 1 }}>
         <Toolbar />
@@ -17,7 +15,6 @@ class Board extends React.Component {
         </View>
       </View>
     );
-  }
-}
+};
 
 export default Board;
