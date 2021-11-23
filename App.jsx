@@ -1,13 +1,11 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import AppContainer from './src/routes';
 
 export default function App() {
   return (
-    <View style={styles.container}>
-		<Text>this is a text</Text>
-      <StatusBar style="auto" />
-    </View>
+    <AppContainer />
   );
 }
 
@@ -19,3 +17,10 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
 });
+
+{ /*
+  <View style={styles.container}>
+  <Text>this is a text</Text>
+    <StatusBar style="auto" />
+  </View>
+*/ }
