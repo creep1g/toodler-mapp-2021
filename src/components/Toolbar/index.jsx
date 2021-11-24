@@ -2,9 +2,10 @@ import React from 'react';
 import {
   View, TouchableHighlight, Text,
 } from 'react-native';
+import PropTypes from 'prop-types';
 import styles from './styles';
 
-const Toolbar = function ({ hasSelectedBoards, onAdd, onRemove }) {
+const Toolbar = function ({ hasSelected, name}) {
   return (
     <View
       styleName="horizontal"
@@ -12,21 +13,32 @@ const Toolbar = function ({ hasSelectedBoards, onAdd, onRemove }) {
     >
       <TouchableHighlight
         style={styles.toolbarAction}
-        onPress={onAdd}
       >
-        <Text style={styles.toolbarActionText}>Add board</Text>
+        <Text style={styles.toolbarActionText}>Add {name}</Text>
       </TouchableHighlight>
       <TouchableHighlight
         style={styles.toolbarAction}
-        onPress={onRemove}
-        disabled={!hasSelectedBoards}>
+        disabled={!hasSelected}>
         <Text
-          style={ [ styles.toolbarActionText, !hasSelectedBoards ? { color: 'rgba(155, 155, 155, .5'} : {}]}>
-          Delete board
+          style={ [ styles.toolbarActionText, !hasSelected ? { color: 'rgba(155, 155, 155, .5'} : {}]}>
+          Modify {name}
+        </Text>
+      </TouchableHighlight>
+      <TouchableHighlight
+        style={styles.toolbarAction}
+        disabled={!hasSelected}>
+        <Text
+          style={ [ styles.toolbarActionText, !hasSelected ? { color: 'rgba(155, 155, 155, .5'} : {}]}>
+          Delete {name}
         </Text>
       </TouchableHighlight>
     </View>
   );
+};
+
+Toolbar.propTypes = {
+  // Determines whether any boards are currently selected
+  hasSelected: PropTypes.bool.isRequired
 };
 
 export default Toolbar;

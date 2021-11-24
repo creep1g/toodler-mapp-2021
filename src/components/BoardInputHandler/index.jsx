@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import {View, TextInput} from 'react-native';
 import styles from './styles';
 
-const GenericInputHandler = () => {
+const BoardInputHandler = () => {
     const [inputs, setInputs] = useState({
         name: '',
         description: '',
@@ -32,4 +32,6 @@ const GenericInputHandler = () => {
                 onChangeText={text => inputHandler('thumbnailPhoto', text)} />
         </View>
     )
-}
+};
+
+export default BoardInputHandler;

@@ -3,10 +3,11 @@ import { View, Image, Text, TouchableOpacity } from 'react-native';
 import styles from './styles';
 import { AntDesign } from '@expo/vector-icons';
 
-const ImageThumbnail = function ({ file, name, id, onLongPress, isSelected}) {
+const ImageThumbnail = function ({ file, name, id, onLongPress, isSelected, onSelect}) {
   return (
 	  <TouchableOpacity
-		onLongPress={() => onLongPress(name)} >
+		onLongPress={() => onLongPress(name)}
+		onPress={() => onSelect(id)} >
 		  {
 		  	isSelected
 		  		?

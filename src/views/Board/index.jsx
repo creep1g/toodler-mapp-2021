@@ -5,6 +5,7 @@ import Toolbar from '../../components/Toolbar';
 import BoardList from '../../components/BoardList';
 import data from '../../resources/data.json';
 import styles from './styles';
+import BoardInput from '../../components/BoardInputHandler';
 
 const Board = ({ navigation: { navigate } }) => {
     
@@ -21,11 +22,21 @@ const Board = ({ navigation: { navigate } }) => {
 		}
 	};
 
+	const onBoardPress = id => {
+		console.log(id);
+		console.log('this ran');
+	}
+
+
 	return (
       <View style={{ flex: 1 }}>
-        <Toolbar hasSelectedBoards={selectedBoards.length > 0} />
+        <Toolbar hasSelected={selectedBoards.length > 0} name={'board'} />
         <View style={styles.boardList}>
-			<BoardList onLongPress={name => onBoardLongPress(name)} selectedBoards={selectedBoards} boards={boards}  />
+			<BoardList 
+				onLongPress={name => onBoardLongPress(name)} 
+				onSelect={id => navigate('List', {BoardId:id})} 
+				selectedBoards={selectedBoards} 
+				boards={boards}/>
 		</View>
 
       </View>
