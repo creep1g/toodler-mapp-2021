@@ -1,12 +1,15 @@
-import React, {useState} from 'react';
+import React, {useState, setState} from 'react';
 import { View, Text } from 'react-native';
 import Toolbar from '../../components/Toolbar';
 import SubList from '../../components/SubList';
 import data from '../../resources/data.json';
 
-const List = ({navigation, BoardId}) => {
-	
-	const [lists, setLists] = useState(data.lists);
+const List = ({route, navigation }) => {
+	const { BoardId } = route.params;
+	console.log(BoardId);
+	const [lists, setLists] = useState(
+		data.lists.filter( (lists) => lists.boardId === BoardId ) 
+									);
 
 	const [selectedLists, setSelectedLists] = useState([]);
 

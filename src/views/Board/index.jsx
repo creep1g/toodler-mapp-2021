@@ -13,12 +13,12 @@ const Board = ({ navigation: { navigate } }) => {
 	
 	const [selectedBoards, setSelectedBoards] = useState([]);
 	
-	const onBoardLongPress = name => {
-		if (selectedBoards.indexOf(name) !== -1) {
-			setSelectedBoards(selectedBoards.filter(board => board !== name));
+	const onBoardLongPress = id => {
+		if (selectedBoards.indexOf(id) !== -1) {
+			setSelectedBoards(selectedBoards.filter(board => board !== id));
 		}
 		else{
-			setSelectedBoards([...selectedBoards, name]);
+			setSelectedBoards([...selectedBoards, id]);
 		}
 	};
 
@@ -33,8 +33,9 @@ const Board = ({ navigation: { navigate } }) => {
         <Toolbar hasSelected={selectedBoards.length > 0} name={'board'} />
         <View style={styles.boardList}>
 			<BoardList 
-				onLongPress={name => onBoardLongPress(name)} 
-				onSelect={id => navigate('List', {BoardId:id})} 
+				onLongPress={id => onBoardLongPress(id)} 
+				onBoardPress={id => onBoardPress(id)}
+				onSelect={id => navigate('List', { BoardId: id })} 
 				selectedBoards={selectedBoards} 
 				boards={boards}/>
 		</View>

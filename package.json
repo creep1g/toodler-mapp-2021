@@ -25,7 +25,8 @@
     "react-native-screens": "^3.9.0",
     "react-native-web": "0.17.1",
     "react-navigation": "^4.4.4",
-    "react-navigation-stack": "^2.10.4"
+    "react-navigation-stack": "^2.10.4",
+    "yarn.lock": "^0.0.1-security"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",
