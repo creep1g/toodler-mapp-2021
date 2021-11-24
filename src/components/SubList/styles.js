@@ -6,9 +6,7 @@ export default StyleSheet.create({
 		justifyContent: 'center',
 		height: 100,
 		margin: 10,
-		width: 150,
-		backgroundColor: '#999',
-
+		width: 115,
 	},
 	name: {
 		alignItems: 'center',
