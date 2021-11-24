@@ -4,9 +4,10 @@ export default StyleSheet.create({
 	list: {
 		flexDirection: 'row',
 		justifyContent: 'center',
-		height: 100,
+//		height: 100,
 		margin: 10,
 		width: 115,
+		borderRadius: 20
 	},
 	name: {
 		alignItems: 'center',
@@ -15,6 +16,7 @@ export default StyleSheet.create({
 		margin: 10,
 		marginLeft: 20,
 		marginRight: 20,
+		fontSize: 10,
 		backgroundColor: '#fff'
 	}
 })
