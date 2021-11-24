@@ -13,7 +13,7 @@ const BoardList = function ({ boards, selectedBoards, onLongPress, onSelect}) {
               <ImageThumbnail 
                 onSelect={onSelect}
                 onLongPress={onLongPress}  
-                isSelected={selectedBoards.indexOf(name) !== -1}
+                isSelected={selectedBoards.indexOf(id) !== -1}
                 file={thumbnailPhoto} 
                 name={name}
                 id={id}  />

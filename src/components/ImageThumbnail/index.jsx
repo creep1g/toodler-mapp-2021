@@ -6,7 +6,7 @@ import { AntDesign } from '@expo/vector-icons';
 const ImageThumbnail = function ({ file, name, id, onLongPress, isSelected, onSelect}) {
   return (
 	  <TouchableOpacity
-		onLongPress={() => onLongPress(name)}
+		onLongPress={() => onLongPress(id)}
 		onPress={() => onSelect(id)} >
 		  {
 		  	isSelected

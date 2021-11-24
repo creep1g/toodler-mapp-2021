@@ -20,7 +20,7 @@ const Toolbar = function ({ hasSelected, name}) {
         style={styles.toolbarAction}
         disabled={!hasSelected}>
         <Text
-          style={ [ styles.toolbarActionText, !hasSelected ? { color: 'rgba(155, 155, 155, .5'} : {}]}>
+          style={ [ styles.toolbarActionText, !hasSelected ? { color: 'rgba(155, 155, 155, .5)'} : {}]}>
           Modify {name}
         </Text>
       </TouchableHighlight>
@@ -28,7 +28,7 @@ const Toolbar = function ({ hasSelected, name}) {
         style={styles.toolbarAction}
         disabled={!hasSelected}>
         <Text
-          style={ [ styles.toolbarActionText, !hasSelected ? { color: 'rgba(155, 155, 155, .5'} : {}]}>
+          style={ [ styles.toolbarActionText, !hasSelected ? { color: 'rgba(155, 155, 155, .5)'} : {}]}>
           Delete {name}
         </Text>
       </TouchableHighlight>
