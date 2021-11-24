@@ -7,7 +7,7 @@ import styles from './styles';
 const AddModal = ({ isOpen, closeModal}) => (
     <Modal
         isOpen={isOpen}
-        closeModal={closeModal}>
+        closeModal={closeModal} >
         
     </Modal>
 );

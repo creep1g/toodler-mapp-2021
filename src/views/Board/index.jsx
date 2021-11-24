@@ -23,7 +23,7 @@ const Board = ({ navigation: { navigate } }) => {
 
 	return (
       <View style={{ flex: 1 }}>
-        <Toolbar />
+        <Toolbar hasSelectedBoards={selectedBoards.length > 0} />
         <View style={styles.boardList}>
 			<BoardList onLongPress={name => onBoardLongPress(name)} selectedBoards={selectedBoards} boards={boards}  />
 		</View>
