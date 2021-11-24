@@ -11,7 +11,7 @@ const SubList = function ({ lists, onLongPress, selectedLists, onSelect  }) {
 				numColumns={2}
 				data={lists}
 				renderItem={({ item: { id, name, color } }) => (
-					<TouchableHighlight style={styles.list}>
+					<TouchableHighlight style={[styles.list, { backgroundColor: color }]}>
 					<View>
 						<Text style={styles.name}> { name } </Text>
 					</View>
