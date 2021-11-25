@@ -1,32 +1,39 @@
-import React, { useState } from 'react';
+import React, { useState, useLocalStorage, useEffect, useReducer } from 'react';
 import { View }
   from 'react-native';
 import Toolbar from '../../components/Toolbar';
 import BoardList from '../../components/BoardList';
-import data from '../../resources/data.json';
+// import data from '../../resources/data.json';
 import styles from './styles';
 import AddModal from '../../components/AddModal';
-
 // import AddModal from '../../components/AddModal';
 
-const Board = function ({ navigation: { navigate } }) {
-  const [boards, setBoards] = useState(data.boards);
+const Board = function ({route, navigation: { navigate } }) {
+  let data = route.params;
+
+  const [boards, setBoards] = useState(data.getBoards());
 
   const [selectedBoards, setSelectedBoards] = useState([]);
 
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
 
   const removeSelectedBoards = () => {
-    setBoards(boards.filter((board) => !selectedBoards.includes(board.id)));
-    setSelectedBoards([]);
+	setBoards(boards.filter((board) => !selectedBoards.includes(board.id)));
+	
+	  selectedBoards.forEach (
+		  function(boardId){
+					  data.deleteBoard(boardId);
+			});
+				  
+	setSelectedBoards([]);
   };
 
   const onBoardLongPress = (id) => {
-    if (selectedBoards.indexOf(id) !== -1) {
-      setSelectedBoards(selectedBoards.filter((board) => board !== id));
-    } else {
-      setSelectedBoards([...selectedBoards, id]);
-    }
+	if (selectedBoards.indexOf(id) !== -1) {
+	  setSelectedBoards(selectedBoards.filter((board) => board !== id));
+	} else {
+	  setSelectedBoards([...selectedBoards, id]);
+	}
   };
 
   const addBoard = (input) => {
@@ -38,6 +45,7 @@ const Board = function ({ navigation: { navigate } }) {
     };
     setBoards([...boards, newBoard]);
     setIsAddModalOpen(false);
+	data.addBoard(newBoard);
   };
 
   return (
