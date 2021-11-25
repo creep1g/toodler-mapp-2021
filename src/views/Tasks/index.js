@@ -6,7 +6,7 @@ import data from '../../resources/data.json';
 import styles from './styles';
 
 const Tasks = ( { route, navigation: { navigate } } ) => {
-
+  
 	// Fetch list id from route parameters
 	const { ListId } = route.params;
 
