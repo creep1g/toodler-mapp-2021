@@ -5,14 +5,20 @@ import Toolbar from '../../components/Toolbar';
 import BoardList from '../../components/BoardList';
 import data from '../../resources/data.json';
 import styles from './styles';
-import AddModal from '../../components/AddModal';
+
+// import AddModal from '../../components/AddModal';
 
 const Board = function ({ navigation: { navigate } }) {
-  const [boards] = useState(data.boards);
+  const [boards, setBoards] = useState(data.boards);
 
   const [selectedBoards, setSelectedBoards] = useState([]);
 
-  const [isAddModalOpen, setIsAddModalOpen] = useState(false);
+  // const [isAddModalOpen, setIsAddModalOpen] = useState(false);
+
+  const removeSelectedBoards = () => {
+    setBoards(boards.filter((board) => !selectedBoards.includes(board.id)));
+    setSelectedBoards([]);
+  };
 
   const onBoardLongPress = (id) => {
     if (selectedBoards.indexOf(id) !== -1) {
@@ -26,7 +32,8 @@ const Board = function ({ navigation: { navigate } }) {
     <View style={{ flex: 1 }}>
       <Toolbar
         hasSelected={selectedBoards.length > 0}
-        onAdd={() => setIsAddModalOpen(true)}
+        // onAdd={() => setIsAddModalOpen(true)}
+        onRemove={() => removeSelectedBoards()}
         name="boards"
       />
       <View style={styles.boardList}>
@@ -37,15 +44,14 @@ const Board = function ({ navigation: { navigate } }) {
           selectedBoards={selectedBoards}
           boards={boards}
         />
-        {/*
-        <AddModal
-          isOpen={isAddModalOpen}
-          closeModal={() => setIsAddModalOpen(false)}
-          enterBoard={() => {}}
-        />
-        */}
       </View>
-
+      {/*
+      <AddModal
+        isOpen={isAddModalOpen}
+        closeModal={() => setIsAddModalOpen(false)}
+        enterBoard={() => {}}
+      />
+      */}
     </View>
   );
 };

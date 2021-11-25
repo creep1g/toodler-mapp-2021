@@ -5,7 +5,7 @@ import {
 import PropTypes from 'prop-types';
 import styles from './styles';
 
-const Toolbar = function ({ hasSelected, name, onAdd }) {
+const Toolbar = function ({ hasSelected, name, onAdd, onRemove}) {
   return (
     <View
       styleName="horizontal"
@@ -35,6 +35,7 @@ const Toolbar = function ({ hasSelected, name, onAdd }) {
       <TouchableHighlight
         style={styles.toolbarAction}
         disabled={!hasSelected}
+        onPress={onRemove}
       >
         <Text
           style={[styles.toolbarActionText, !hasSelected ? { color: 'rgba(155, 155, 155, .5)' } : {}]}
@@ -52,6 +53,7 @@ Toolbar.propTypes = {
   // Determines whether any boards are currently selected
   hasSelected: PropTypes.bool.isRequired,
   onAdd: PropTypes.func.isRequired,
+  onRemove: PropTypes.func.isRequired,
   name: PropTypes.string.isRequired,
 };
 
