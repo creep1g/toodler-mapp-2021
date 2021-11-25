@@ -12,7 +12,7 @@ const Main = function ({ navigation: { navigate } }) {
       <Text style={styles.paragraph}> Toddler!! </Text>
       <TouchableHighlight
         style={styles.button}
-		  onPress={() => { navigate('Board'); }}
+        onPress={() => { navigate('Board'); }}
       >
         <Text style={styles.buttonText}>To boards</Text>
       </TouchableHighlight>

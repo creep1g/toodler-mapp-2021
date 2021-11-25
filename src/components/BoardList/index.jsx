@@ -2,24 +2,25 @@ import React from 'react';
 import { View, FlatList } from 'react-native';
 import ImageThumbnail from '../ImageThumbnail';
 
-const BoardList = function ({ boards, selectedBoards, onLongPress, onSelect}) {
+const BoardList = function ({
+  boards, selectedBoards, onLongPress, onSelect,
+}) {
   return (
     <View style={{ flex: 1 }}>
-	<FlatList
+      <FlatList
         numColumns={1}
         data={boards}
-        renderItem={({ item: { id, name, thumbnailPhoto } }) =>
-          (
-              <ImageThumbnail 
-                onSelect={onSelect}
-                onLongPress={onLongPress}  
-                isSelected={selectedBoards.indexOf(id) !== -1}
-                file={thumbnailPhoto} 
-                name={name}
-                id={id}  />
-          ) 
-		  }
-      keyExtractor={board => board.id }
+        renderItem={({ item: { id, name, thumbnailPhoto } }) => (
+          <ImageThumbnail
+            onSelect={onSelect}
+            onLongPress={onLongPress}
+            isSelected={selectedBoards.indexOf(id) !== -1}
+            file={thumbnailPhoto}
+            name={name}
+            id={id}
+          />
+        )}
+        keyExtractor={(board) => board.id}
       />
     </View>
   );

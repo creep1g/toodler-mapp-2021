@@ -1,4 +1,4 @@
-import React, {useState, setState} from 'react';
+import React, { useState, setState } from 'react';
 import { View, Text } from 'react-native';
 import Toolbar from '../../components/Toolbar';
 import SubList from '../../components/SubList';
@@ -12,7 +12,7 @@ const List = ({route, navigation }) => {
 		data.lists.filter( (lists) => lists.boardId === BoardId ) 
 									);
 
-	const [selectedLists, setSelectedLists] = useState([]);
+  const [selectedLists, setSelectedLists] = useState([]);
 
 	const onListLongPress = id => {
 		if (selectedLists.indexOf(id) !== -1) {
