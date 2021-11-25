@@ -3,6 +3,7 @@ import { View, Text } from 'react-native';
 import Toolbar from '../../components/Toolbar';
 import SubList from '../../components/SubList';
 import data from '../../resources/data.json';
+import AddModal from '../../components/AddModal';
 import styles from './styles';
 
 const List = function ({ route, navigation }) {
@@ -13,6 +14,8 @@ const List = function ({ route, navigation }) {
   );
 
   const [selectedLists, setSelectedLists] = useState([]);
+
+  const [isAddModalOpen, setIsAddModalOpen] = useState(false);
 
   const onListLongPress = (id) => {
     if (selectedLists.indexOf(id) !== -1) {
@@ -27,6 +30,10 @@ const List = function ({ route, navigation }) {
     setSelectedLists([]);
   };
 
+  const addList = (input) => {
+    console.log(input);
+  };
+
   // Render list
   return (
     <View style={styles.container}>
@@ -34,6 +41,7 @@ const List = function ({ route, navigation }) {
         hasSelected={selectedLists.length > 0}
         name="list"
         onRemove={() => removeSelectedLists()}
+        onAdd={() => setIsAddModalOpen(true)}
       />
       <SubList
         lists={lists}
@@ -41,6 +49,12 @@ const List = function ({ route, navigation }) {
         onLongPress={(id) => onListLongPress(id)}
         selectedLists={selectedLists}
         onSelect={(id) => navigation.navigate('Tasks', { ListId: id, BoardId })}
+      />
+      <AddModal
+        isOpen={isAddModalOpen}
+        closeModal={() => setIsAddModalOpen(false)}
+        addBoard={(input) => addList(input)}
+        name="list"
       />
     </View>
   );

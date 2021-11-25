@@ -29,6 +29,17 @@ const Board = function ({ navigation: { navigate } }) {
     }
   };
 
+  const addBoard = (input) => {
+    const newBoard = {
+      id: boards.length + 1,
+      name: input.name,
+      description: input.description,
+      thumbnailPhoto: input.thumbnailPhoto,
+    };
+    setBoards([...boards, newBoard]);
+    setIsAddModalOpen(false);
+  };
+
   return (
     <View style={{ flex: 1 }}>
       <Toolbar
@@ -49,7 +60,8 @@ const Board = function ({ navigation: { navigate } }) {
       <AddModal
         isOpen={isAddModalOpen}
         closeModal={() => setIsAddModalOpen(false)}
-        enterBoard={() => {}}
+        addBoard={(input) => addBoard(input)}
+        name="board"
       />
     </View>
   );

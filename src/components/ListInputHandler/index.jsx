@@ -2,11 +2,10 @@ import React, { useState } from 'react';
 import { Text, View, TextInput, TouchableOpacity } from 'react-native';
 import styles from './styles';
 
-const BoardInputHandler = function ({ addBoard, closeModal }) {
+const ListInputHandler = function ({ addList, closeModal }) {
   const [inputs, setInputs] = useState({
     name: '',
-    description: '',
-    thumbnailPhoto: '',
+    color: '',
   });
 
   const inputHandler = (name, value) => {
@@ -19,25 +18,20 @@ const BoardInputHandler = function ({ addBoard, closeModal }) {
   return (
     <View>
       <TextInput
-        placeholder="Enter board name"
+        placeholder="Enter list name"
         value={inputs.name}
         onChangeText={(text) => inputHandler('name', text)}
       />
       <TextInput
-        placeholder="Enter board description"
-        value={inputs.description}
-        onChangeText={(text) => inputHandler('description', text)}
-      />
-      <TextInput
-        placeholder="Enter thumbnail url"
-        value={inputs.thumbnailPhoto}
-        onChangeText={(text) => inputHandler('thumbnailPhoto', text)}
+        placeholder="Enter color hex"
+        value={inputs.color}
+        onChangeText={(text) => inputHandler('color', text)}
       />
       <View style={styles.buttonContainer}>
         <TouchableOpacity
-          onPress={() => addBoard(inputs)}
+          onPress={() => addList(inputs)}
         >
-          <Text>Add board</Text>
+          <Text>Add List</Text>
         </TouchableOpacity>
         <TouchableOpacity
           onPress={closeModal}
@@ -50,4 +44,4 @@ const BoardInputHandler = function ({ addBoard, closeModal }) {
   );
 };
 
-export default BoardInputHandler;
+export default ListInputHandler;
