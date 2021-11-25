@@ -7,20 +7,45 @@ import styles from './styles';
 
 const Tasks = ( { route, navigation: { navigate } } ) => {
 	
+<<<<<<< HEAD
 	const { ListId, BoardId } = route.params;
 
 
+=======
+	// Fetch list id from route parameters
+	const { ListId } = route.params;
+
+	// Filter out irrelevant tasks from out data stream
+>>>>>>> ed3e6ff450f3af299103e6b1de2e5143c8f0be41
 	const [tasks, setTasks] = useState(
 		data.tasks.filter( (tasks) => tasks.listId === ListId )
 	);
 
-	console.log({tasks});
-
+	// Selected tasks datastructure initialized
 	const [ selectedTasks, setSelectedTasks ] = useState([]);
-
-	const [ finishedTasks ] = useState( 
-		tasks.filter( (tasks) => tasks.isFinished === true)		
-	);
+	
+	// Finished tasks datastructure initialized
+	const [ finishedTasks, setFinishedTasks ] = useState([]);
+	
+	// When tasks are marked finished they will be added to finisheTasks
+	const addFinished = id => {
+		if ( finishedTasks.indexOf(id) !== -1 ) {
+			setFinishedTasks(finishedTasks.filter(task => task !== id));
+		}
+		else{
+			setFinishedTasks([...finishedTasks, id])
+		}
+	};
+	
+	// Adds tasks that are already finished to finished task data structure
+	const addPreExisting = (tasks, finishedTasks) => {
+		tasks.forEach(function (task) {
+			if (task.isFinished){
+				finishedTasks.push(task.id)
+			}
+		});
+	}
+	addPreExisting(tasks, finishedTasks);
 
 	const onTaskLongPress = id => { 
 		if ( selectedTasks.indexOf(id) !== -1) {
@@ -46,7 +71,11 @@ const Tasks = ( { route, navigation: { navigate } } ) => {
 			<View style={styles.container}>
 				<TaskList
 					tasks={tasks}
-					onTaskLongPress={id => onTaskLongpress(id)}
+					onLongPress={id => onTaskLongPress(id)}
+					onSelect={id => addFinished(id)}
+					addFinished={id => addFinished(id)}
+					selectedTasks={selectedTasks}
+					finishedTasks={finishedTasks}
 				/>
 			</View>
 		</View>
