@@ -19,17 +19,17 @@ const BoardInputHandler = function () {
   return (
     <View>
       <TextInput
-        placeholder="Enter the name for the board"
+        placeholder="Enter board name"
         value={inputs.name}
         onChangeText={(text) => inputHandler('name', text)}
       />
       <TextInput
-        placeholder="Enter the description for the board"
+        placeholder="Enter board description"
         value={inputs.description}
         onChangeText={(text) => inputHandler('description', text)}
       />
       <TextInput
-        placeholder="Enter the thumbnail url for the board"
+        placeholder="Enter thumbnail url"
         value={inputs.thumbnailPhoto}
         onChangeText={(text) => inputHandler('thumbnailPhoto', text)}
       />
