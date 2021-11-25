@@ -3,7 +3,7 @@ import { View, Text } from 'react-native';
 import Toolbar from '../../components/Toolbar';
 import SubList from '../../components/SubList';
 import data from '../../resources/data.json';
-import AddModal from '../../components/AddModal';
+import AddModal from '../../components/AddListModal';
 import styles from './styles';
 
 const List = function ({ route, navigation }) {
@@ -31,7 +31,15 @@ const List = function ({ route, navigation }) {
   };
 
   const addList = (input) => {
-    console.log(input);
+    const newList = {
+      id: data.lists.length + 1,
+      name: input.name,
+      color: input.color,
+      boardId: BoardId,
+    };
+    console.log(newList);
+    setLists([...lists, newList]);
+    setIsAddModalOpen(false);
   };
 
   // Render list
@@ -53,7 +61,7 @@ const List = function ({ route, navigation }) {
       <AddModal
         isOpen={isAddModalOpen}
         closeModal={() => setIsAddModalOpen(false)}
-        addBoard={(input) => addList(input)}
+        addList={(input) => addList(input)}
         name="list"
       />
     </View>
