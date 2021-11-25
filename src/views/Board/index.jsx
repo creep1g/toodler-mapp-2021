@@ -45,6 +45,7 @@ const Board = function ({route, navigation: { navigate } }) {
     };
     setBoards([...boards, newBoard]);
     setIsAddModalOpen(false);
+	data.addBoard(newBoard);
   };
 
   return (

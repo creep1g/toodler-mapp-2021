@@ -9,6 +9,7 @@ class DataDog {
 
 	constructor () {
 		boards = data.boards;
+		lists = data.lists;
 	}
 
 	getBoards (){
@@ -20,11 +21,23 @@ class DataDog {
 	}
 
 	deleteBoard (id){
-		console.log(id);
 		boards = boards.filter(function(value){
-			return value.id != id;
+			return value.id !== id;
 		});
-		console.log(boards);
+	}
+	
+	getLists( callerId){
+		return lists.filter( (lists) => lists.boardId !== callerId);
+	}
+
+	deleteList (id) {
+		lists = lists.filter(function(value) {
+			return value.id !== id;
+		});
+	}
+
+	addList (list) {
+		lists.push(list);
 	}
 
 }

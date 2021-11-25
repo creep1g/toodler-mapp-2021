@@ -4,7 +4,6 @@ import { createStackNavigator } from '@react-navigation/stack';
 import DataDog from '../components/Services';
 
 const Stack = createStackNavigator();
-const Data = new DataDog();
 import Main from '../views/Main';
 import Board from '../views/Board';
 import List from '../views/List';
