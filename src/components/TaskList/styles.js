@@ -16,6 +16,8 @@ export default StyleSheet.create ({
 		fontSize: 15,
 		fontWeight: 'bold',
 		margin: 10,
+		marginTop: 20,
+		marginBottom: 20,
 		borderBottomColor: 'black',
 		borderBottomWidth: 2
 	},
@@ -25,6 +27,29 @@ export default StyleSheet.create ({
 		marginLeft: 10,
 		marginRight: 10,
 		marginBottom: 10,
-	}
+	},
+	
+	finished: {
+		position: 'absolute',
+		top: 5,
+		right: 220,
+		fontSize: 16,
+		color: "darkgreen" 
+	},
 
+	notFinished: {
+		position: 'absolute',
+		top: 5,
+		right: 220,
+		fontSize: 16,
+		color: "black"
+	},
+
+	selected: {
+		position: 'absolute',
+		top: 5,
+		right: 20,
+		fontSize: 16
+	}
+	
 }); 
