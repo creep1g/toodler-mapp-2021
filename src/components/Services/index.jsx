@@ -57,6 +57,17 @@ class DataDog {
 		})
 	}
 
+	moveTask (id, ListId) {
+		this.tasks.forEach(
+			function(task){
+				if (task.id === id){
+					task.listId = ListsId
+				}
+			}
+		);
+		
+	}
+
 	addTask (task) {
 		this.tasks.push(task);
 	}
@@ -76,7 +87,6 @@ class DataDog {
 			}
 		)
 		if (finishedTasks.includes(id)){
-			console.log("now");
 			finishedTasks = finishedTasks.filter(function(value){ return value !== id })
 		}
 		else{
