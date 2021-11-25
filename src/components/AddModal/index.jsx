@@ -3,28 +3,30 @@ import PropTypes from 'prop-types';
 import { Text, TouchableOpacity } from 'react-native';
 import Modal from '../Modal';
 // import styles from './styles';
-import BoardInput from '../BoardInputHandler';
+import BoardInputHandler from '../BoardInputHandler';
 
-const AddModal = ({
+const AddModal = function ({
   isOpen, closeModal, enterBoard,
-}) => {
+})
+{ return (
   <Modal
     isOpen={isOpen}
     closeModal={closeModal}
   >
-    <BoardInput />
+    <BoardInputHandler />
     <TouchableOpacity
       onPress={() => enterBoard()}
     >
       <Text>Button</Text>
     </TouchableOpacity>
-  </Modal>;
+  </Modal>
+);
 };
 
 AddModal.propTypes = {
   isOpen: PropTypes.bool.isRequired,
   closeModal: PropTypes.func.isRequired,
-  enterBoard: PropTypes.func.isRequired,
+  // enterBoard: PropTypes.func.isRequired,
 };
 
 export default AddModal;
