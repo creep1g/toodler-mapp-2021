@@ -1,12 +1,14 @@
-import React, { useState, setState } from 'react';
+import React, { useState, setState, useEffect } from 'react';
 import { View, Text } from 'react-native';
 import Toolbar from '../../components/Toolbar';
 import SubList from '../../components/SubList';
 import data from '../../resources/data.json';
 import AddModal from '../../components/AddModal';
 import styles from './styles';
+import BoardData from '../../components/Services/';
 
 const List = function ({ route, navigation }) {
+
   const { BoardId } = route.params;
 
   const [lists, setLists] = useState(
@@ -27,7 +29,7 @@ const List = function ({ route, navigation }) {
 
   const removeSelectedLists = () => {
     setLists(lists.filter((list) => !selectedLists.includes(list.id)));
-    setSelectedLists([]);
+	setSelectedLists([]);
   };
 
   const addList = (input) => {

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { View } from 'react-native';
 import Toolbar from '../../components/Toolbar';
 import TaskList from '../../components/TaskList';
@@ -20,8 +20,9 @@ const Tasks = ( { route, navigation: { navigate } } ) => {
 	
 	// Finished tasks datastructure initialized
 	const [ finishedTasks, setFinishedTasks ] = useState([]);
-	
+
 	// When tasks are marked finished they will be added to finisheTasks
+
 	const addFinished = id => {
 		if ( finishedTasks.indexOf(id) !== -1 ) {
 			setFinishedTasks(finishedTasks.filter(task => task !== id));
@@ -31,20 +32,20 @@ const Tasks = ( { route, navigation: { navigate } } ) => {
 		}
 	};
 
-	useEffect(() => {
-		(async () => {
-			setFinishedTasks(setFinishedTasks([...finishedTasks, id]));
-		})();
-	}, []);
+
 	// Adds tasks that are already finished to finished task data structure
 	const addPreExisting = (tasks, finishedTasks) => {
 		tasks.forEach(function (task) {
 			if (task.isFinished){
+				// setFinishedTasks(finishedTasks.filter(task => task !== task.id))
+				setFinishedTasks([...finishedTasks, task.id])
 				finishedTasks.push(task.id)
 			}
 		});
+	
 	}
-	// addPreExisting(tasks, finishedTasks);
+
+	 // addPreExisting(tasks, finishedTasks);
 
 	const onTaskLongPress = id => {
 		if (selectedTasks.indexOf(id) !== -1) {
@@ -54,6 +55,11 @@ const Tasks = ( { route, navigation: { navigate } } ) => {
 			setSelectedTasks([...selectedTasks, id])		
 		}
 	}
+	useEffect(() => {
+		console.log(finishedTasks[0]);
+		setTasks(tasks);
+	})
+
 
 	const removeSelectedTasks = () => {
 		setTasks(tasks.filter((task) => !selectedTasks.includes(task.id)));
