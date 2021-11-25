@@ -1,38 +1,58 @@
-import React, { useState } from 'react';
+import React, { useState, useLocalStorage, useEffect, useReducer } from 'react';
 import { View }
   from 'react-native';
 import Toolbar from '../../components/Toolbar';
 import BoardList from '../../components/BoardList';
-import data from '../../resources/data.json';
+// import data from '../../resources/data.json';
 import styles from './styles';
-
+import AddModal from '../../components/AddModal';
 // import AddModal from '../../components/AddModal';
 
-const Board = function ({ navigation: { navigate } }) {
-  const [boards, setBoards] = useState(data.boards);
+const Board = function ({route, navigation: { navigate } }) {
+  let data = route.params;
+
+  const [boards, setBoards] = useState(data.getBoards());
 
   const [selectedBoards, setSelectedBoards] = useState([]);
 
-  // const [isAddModalOpen, setIsAddModalOpen] = useState(false);
+  const [isAddModalOpen, setIsAddModalOpen] = useState(false);
 
   const removeSelectedBoards = () => {
-    setBoards(boards.filter((board) => !selectedBoards.includes(board.id)));
-    setSelectedBoards([]);
+	setBoards(boards.filter((board) => !selectedBoards.includes(board.id)));
+	
+	  selectedBoards.forEach (
+		  function(boardId){
+					  data.deleteBoard(boardId);
+			});
+				  
+	setSelectedBoards([]);
   };
 
   const onBoardLongPress = (id) => {
-    if (selectedBoards.indexOf(id) !== -1) {
-      setSelectedBoards(selectedBoards.filter((board) => board !== id));
-    } else {
-      setSelectedBoards([...selectedBoards, id]);
-    }
+	if (selectedBoards.indexOf(id) !== -1) {
+	  setSelectedBoards(selectedBoards.filter((board) => board !== id));
+	} else {
+	  setSelectedBoards([...selectedBoards, id]);
+	}
+  };
+
+  const addBoard = (input) => {
+    const newBoard = {
+      id: boards.length + 1,
+      name: input.name,
+      description: input.description,
+      thumbnailPhoto: input.thumbnailPhoto,
+    };
+    setBoards([...boards, newBoard]);
+    setIsAddModalOpen(false);
+	data.addBoard(newBoard);
   };
 
   return (
     <View style={{ flex: 1 }}>
       <Toolbar
         hasSelected={selectedBoards.length > 0}
-        // onAdd={() => setIsAddModalOpen(true)}
+        onAdd={() => setIsAddModalOpen(true)}
         onRemove={() => removeSelectedBoards()}
         name="boards"
       />
@@ -45,13 +65,12 @@ const Board = function ({ navigation: { navigate } }) {
           boards={boards}
         />
       </View>
-      {/*
       <AddModal
         isOpen={isAddModalOpen}
         closeModal={() => setIsAddModalOpen(false)}
-        enterBoard={() => {}}
+        addBoard={(input) => addBoard(input)}
+        name="board"
       />
-      */}
     </View>
   );
 };

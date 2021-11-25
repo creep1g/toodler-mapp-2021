@@ -4,9 +4,9 @@ import { View, Text } from 'react-native';
 import PropTypes from 'prop-types';
 import styles from './styles';
 
-const Modal = ({
+const Modal = function ({
   isOpen, closeModal, title, children,
-}) => {
+}) { return  (
   <NativeModal
     isVisible={isOpen}
     hasBackdrop
@@ -19,8 +19,8 @@ const Modal = ({
       <Text>{title}</Text>
       {children}
     </View>
-  </NativeModal>;
-};
+  </NativeModal>
+)};
 
 Modal.propTypes = {
   isOpen: PropTypes.bool.isRequired,
