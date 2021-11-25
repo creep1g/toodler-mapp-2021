@@ -6,17 +6,10 @@ import data from '../../resources/data.json';
 import styles from './styles';
 
 const Tasks = ( { route, navigation: { navigate } } ) => {
-	
-<<<<<<< HEAD
-	const { ListId, BoardId } = route.params;
-
-
-=======
 	// Fetch list id from route parameters
 	const { ListId } = route.params;
 
 	// Filter out irrelevant tasks from out data stream
->>>>>>> ed3e6ff450f3af299103e6b1de2e5143c8f0be41
 	const [tasks, setTasks] = useState(
 		data.tasks.filter( (tasks) => tasks.listId === ListId )
 	);
