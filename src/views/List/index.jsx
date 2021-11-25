@@ -14,25 +14,25 @@ const List = ({route, navigation }) => {
 
 	const [selectedLists, setSelectedLists] = useState([]);
 
-	const onListLongPress = name => {
-		if (selectedLists.indexOf(name) !== -1) {
-			setSelectedLists(selectedLists.filter(list => list !== name));
+	const onListLongPress = id => {
+		if (selectedLists.indexOf(id) !== -1) {
+			setSelectedLists(selectedLists.filter(list => list !== id));
 		}
 		else {
-			setSelectedLists([...selectedLists, name]);
+			setSelectedLists([...selectedLists, id]);
 		}
 	}
 	
 	// Render list	
 	return ( 
-		<View style={{ flex: 1 }}>
+		<View style={styles.container}>
 			<Toolbar hasSelected={false} name={'list'}/>
 					<SubList 
 					lists={lists} 
 					BoardId={BoardId} 
-					onLongPress={name => onListLongPress(name)}
+					onLongPress={id => onListLongPress(id)}
 					selectedLists={selectedLists}
-					onSelect={id => navigation.navigate('Task', {ListId:id})}/> 
+						onSelect={id => navigation.navigate('Tasks', {ListId:id, BoardId:BoardId})}/> 
 		</View>
 	);
 };

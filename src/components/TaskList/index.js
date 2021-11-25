@@ -1,26 +1,23 @@
 import React, { useState } from 'react';
-import { View, FlatList, Text } from 'react-native';
-import data from '../../resources/data.json';
+import { View, FlatList, Text, CheckBox } from 'react-native';
+import styles from './styles';
+import { AntDesign } from '@expo/vector-icons';
 
-const TaskList = ( { ListId, listKey } ) => {
-
-	const [ tasks, setTasks ] = useState(
-		data.tasks.filter ( (tasks) => tasks.listId === ListId )
-	);
+const TaskList = ( {tasks, onLongPress} ) => {
 
 	return (
 		<View>
 			<FlatList
 				numColumns={1}
 				data={tasks}
-				renderItem={({ item: {id, name, isFinished } }) =>
-					<View>
-						<Text>{ name }</Text>
-						<Text>{ isFinished }</Text>
+				renderItem={({ item }) =>
+					<View style={styles.card}>
+						<Text style={styles.heading}>{ item.name }</Text>
+						<Text style={styles.description}>{ item.description }</Text>
 					</View>
 				}
 
-			keyExtractor={tasks => tasks.id}
+			keyExtractor={item => item.id}
 			/>
 		</View>
 	)

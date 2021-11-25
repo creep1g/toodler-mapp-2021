@@ -7,6 +7,7 @@ const Stack = createStackNavigator();
 import Main from '../views/Main';
 import Board from '../views/Board';
 import List from '../views/List';
+import Tasks from '../views/Tasks';
 
 const Routes = () => (
 	<NavigationContainer>
@@ -14,6 +15,7 @@ const Routes = () => (
 			<Stack.Screen name="Main" component={Main} />
 			<Stack.Screen name="Board" component={Board} />
 			<Stack.Screen name="List" component={List} />
+			<Stack.Screen name="Tasks" component={Tasks} />
 		</Stack.Navigator>
 	</NavigationContainer>
 );
