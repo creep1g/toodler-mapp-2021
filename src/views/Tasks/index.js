@@ -3,10 +3,10 @@ import { View } from 'react-native';
 import Toolbar from '../../components/Toolbar';
 import TaskList from '../../components/TaskList';
 import data from '../../resources/data.json';
-import styles from './styles'
+import styles from './styles';
 
 const Tasks = ( { route, navigation: { navigate } } ) => {
-
+	
 	const { ListId, BoardId } = route.params;
 
 
@@ -31,9 +31,18 @@ const Tasks = ( { route, navigation: { navigate } } ) => {
 		}
 	}
 
+	const removeSelectedTasks = () => {
+		setTasks(tasks.filter((task) => !selectedTasks.includes(task.id)));
+		setSelectedTasks([]);
+	};
+
 	return (
 		<View style={[{ flex: 1 }]}>
-			<Toolbar hasSelected={selectedTasks.length > 0} name={'task'} />
+			<Toolbar 
+			  hasSelected={selectedTasks.length > 0} 
+			  name={'task'}
+			  onRemove={() => removeSelectedTasks()} 
+			/>
 			<View style={styles.container}>
 				<TaskList
 					tasks={tasks}

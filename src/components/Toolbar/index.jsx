@@ -5,7 +5,9 @@ import {
 import PropTypes from 'prop-types';
 import styles from './styles';
 
-const Toolbar = function ({ hasSelected, name, onAdd, onRemove}) {
+const Toolbar = function ({
+  hasSelected, name, onAdd, onRemove,
+}) {
   return (
     <View
       styleName="horizontal"
