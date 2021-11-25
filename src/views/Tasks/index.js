@@ -41,6 +41,11 @@ const Tasks = ( { route, navigation: { navigate } } ) => {
 
 	const removeSelectedTasks = () => {
 		setTasks(tasks.filter((task) => !selectedTasks.includes(task.id)));
+		selectedTasks.forEach (
+			function(taskId){
+				data.deleteTask(taskId);
+			}
+		);
 		setSelectedTasks([]);
 	};
 
