@@ -5,30 +5,37 @@ import TaskList from '../../components/TaskList';
 import data from '../../resources/data.json';
 import styles from './styles';
 
-const Tasks = function ({ route, navigation: { navigate } }) {
-// Fetch list id from route parameters
-  const { ListId } = route.params;
+const Tasks = ( { route, navigation: { navigate } } ) => {
 
-  // Filter out irrelevant tasks from out data stream
+	// Fetch list id from route parameters
+	const { ListId } = route.params;
 
-  const [tasks, setTasks] = useState(
-    data.tasks.filter((task) => task.listId === ListId),
-  );
+	// Filter out irrelevant tasks from out data stream
+	const [tasks, setTasks] = useState(
+		data.tasks.filter( (tasks) => tasks.listId === ListId )
+	);
 
-  // Selected tasks datastructure initialized
-  const [selectedTasks, setSelectedTasks] = useState([]);
-  // Finished tasks datastructure initialized
-  const [finishedTasks, setFinishedTasks] = useState([]);
-  // When tasks are marked finished they will be added to finisheTasks
-  const addFinished = (id) => {
-		if (finishedTasks.indexOf(id) !== -1) {
+	// Selected tasks datastructure initialized
+	const [ selectedTasks, setSelectedTasks ] = useState([]);
+	
+	// Finished tasks datastructure initialized
+	const [ finishedTasks, setFinishedTasks ] = useState([]);
+	
+	// When tasks are marked finished they will be added to finisheTasks
+	const addFinished = id => {
+		if ( finishedTasks.indexOf(id) !== -1 ) {
 			setFinishedTasks(finishedTasks.filter(task => task !== id));
 		}
 		else{
 			setFinishedTasks([...finishedTasks, id])
 		}
 	};
-	
+
+	useEffect(() => {
+		(async () => {
+			setFinishedTasks(setFinishedTasks([...finishedTasks, id]));
+		})();
+	}, []);
 	// Adds tasks that are already finished to finished task data structure
 	const addPreExisting = (tasks, finishedTasks) => {
 		tasks.forEach(function (task) {
@@ -37,7 +44,7 @@ const Tasks = function ({ route, navigation: { navigate } }) {
 			}
 		});
 	}
-	addPreExisting(tasks, finishedTasks);
+	// addPreExisting(tasks, finishedTasks);
 
 	const onTaskLongPress = id => {
 		if (selectedTasks.indexOf(id) !== -1) {
