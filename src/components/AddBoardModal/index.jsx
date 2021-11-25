@@ -1,9 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Text, TouchableOpacity } from 'react-native';
 import Modal from '../Modal';
 // import styles from './styles';
-import ListInputHandler from '../ListInputHandler';
 import BoardInputHandler from '../BoardInputHandler';
 
 const AddBoardModal = function ({
