@@ -15,22 +15,20 @@ const ImageThumbnail = function ({
     >
       {
 		  	isSelected
-		  		?		 		<AntDesign name="checkcircleo" />
-		  	  : <></>
+		  		?
+		 		<AntDesign name="checkcircleo" style={styles.checkmark} />
+				:
+		    	<></>
 		  }
-      <View style={{ opacity: isSelected ? 0.5 : 1 }}>
-        <Image
-          style={styles.image}
-          resizeMode="cover"
-          source={{ uri: file }}
-        />
-        <Text style={styles.text}>
-          {' '}
-          { name }
-          {' '}
-        </Text>
-      </View>
-    </TouchableOpacity>
+		  <View style={[styles.view, {opacity: isSelected ? .5 : 1}]}>
+			<Text style={styles.text}> { name } </Text>
+			<Image
+			style={styles.image}
+			resizeMode="cover"
+			source={{ uri: file }}
+			/>
+	</View>
+	</TouchableOpacity>
   );
 };
 
