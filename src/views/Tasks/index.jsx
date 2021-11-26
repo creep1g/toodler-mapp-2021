@@ -2,25 +2,22 @@ import React, { useState, useEffect } from 'react';
 import { View } from 'react-native';
 import Toolbar from '../../components/Toolbar';
 import TaskList from '../../components/TaskList';
-import data from '../../resources/data.json';
 import styles from './styles';
 
 const Tasks = ( { route, navigation: { navigate } } ) => {
 
 	// Fetch list id from route parameters
 	const { ListId } = route.params;
+	let { data } = route.params;
 
 	// Filter out irrelevant tasks from out data stream
-	const [tasks, setTasks] = useState(
-		data.tasks.filter( (tasks) => tasks.listId === ListId )
-	);
+	const [tasks, setTasks] = useState(data.getTasks(ListId));
 
 	// Selected tasks datastructure initialized
 	const [ selectedTasks, setSelectedTasks ] = useState([]);
 	
 	// Finished tasks datastructure initialized
-	const [ finishedTasks, setFinishedTasks ] = useState([]);
-
+	const [ finishedTasks, setFinishedTasks ] = useState(data.getFinishedTasks(ListId));
 	// When tasks are marked finished they will be added to finisheTasks
 
 	const addFinished = id => {
@@ -30,22 +27,8 @@ const Tasks = ( { route, navigation: { navigate } } ) => {
 		else{
 			setFinishedTasks([...finishedTasks, id])
 		}
+		data.markFinished(id);
 	};
-
-
-	// Adds tasks that are already finished to finished task data structure
-	const addPreExisting = (tasks, finishedTasks) => {
-		tasks.forEach(function (task) {
-			if (task.isFinished){
-				// setFinishedTasks(finishedTasks.filter(task => task !== task.id))
-				setFinishedTasks([...finishedTasks, task.id])
-				finishedTasks.push(task.id)
-			}
-		});
-	
-	}
-
-	 // addPreExisting(tasks, finishedTasks);
 
 	const onTaskLongPress = id => {
 		if (selectedTasks.indexOf(id) !== -1) {
@@ -55,14 +38,14 @@ const Tasks = ( { route, navigation: { navigate } } ) => {
 			setSelectedTasks([...selectedTasks, id])		
 		}
 	}
-	useEffect(() => {
-		console.log(finishedTasks[0]);
-		setTasks(tasks);
-	})
-
 
 	const removeSelectedTasks = () => {
 		setTasks(tasks.filter((task) => !selectedTasks.includes(task.id)));
+		selectedTasks.forEach (
+			function(taskId){
+				data.deleteTask(taskId);
+			}
+		);
 		setSelectedTasks([]);
 	};
 
