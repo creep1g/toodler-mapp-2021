@@ -47,6 +47,7 @@ const TaskList = function ({
               ? <AntDesign name="checksquare" style={styles.finished} />
               : <AntDesign name="checksquareo" style={styles.notFinished} />
             }
+
             <View style={[styles.description, { opacity: isSelected ? 1 : 0.5 }]}>
               <Text style={styles.heading}>{ name }</Text>
               <Text style={styles.description}>{ description }</Text>
@@ -67,5 +68,4 @@ TaskList.propTypes = {
   selectedTasks: PropTypes.arrayOf(PropTypes.number).isRequired,
 
 };
-
 export default TaskList;
