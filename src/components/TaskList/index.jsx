@@ -38,16 +38,15 @@ const TaskList = function ({
             style={[styles.card, styles.shadow, { opacity: isSelected(id) ? 0.5 : 1 }]}
           >
             {
-isSelected(id)
-  ? <AntDesign name="checkcircleo" style={styles.selected} />
-  : <> </>
-          }
+              isSelected(id)
+                ? <AntDesign name="checkcircleo" style={styles.selected} />
+                : <></>
+            }
             {
             isFinished(id)
               ? <AntDesign name="checksquare" style={styles.finished} />
               : <AntDesign name="checksquareo" style={styles.notFinished} />
-}
-            {/* </TouchableHighlight> */}
+            }
             <View style={[styles.description, { opacity: isSelected ? 1 : 0.5 }]}>
               <Text style={styles.heading}>{ name }</Text>
               <Text style={styles.description}>{ description }</Text>
@@ -60,12 +59,11 @@ isSelected(id)
   );
 };
 
-// tasks, onLongPress, onSelect, finishedTasks, selectedTasks,
 TaskList.propTypes = {
   tasks: PropTypes.arrayOf(PropTypes.object).isRequired,
   onLongPress: PropTypes.func.isRequired,
   onSelect: PropTypes.func.isRequired,
-  finishedTasks: PropTypes.arrayOf(PropTypes.object).isRequired,
+  finishedTasks: PropTypes.arrayOf(PropTypes.number).isRequired,
   selectedTasks: PropTypes.arrayOf(PropTypes.number).isRequired,
 
 };
