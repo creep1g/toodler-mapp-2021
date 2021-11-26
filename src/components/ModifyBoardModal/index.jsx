@@ -2,10 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Modal from '../Modal';
 import styles from './styles';
-import BoardInputHandler from '../BoardInputHandler';
+import ModifyBoardInputHandler from '../ModifyBoardInputHandler';
 
-const AddBoardModal = function ({
-  isOpen, closeModal, addBoard,
+const ModifyBoardModal = function ({
+  isOpen, closeModal, modifyBoard, board,
 }) {
   return (
     <Modal
@@ -14,20 +14,22 @@ const AddBoardModal = function ({
       closeModal={closeModal}
     >
 
-      <BoardInputHandler
+      <ModifyBoardInputHandler
         style={styles.modal}
         closeModal={closeModal}
-        addBoard={addBoard}
+        modifyBoard={modifyBoard}
+        board={board}
       />
     </Modal>
   );
 };
 
-AddBoardModal.propTypes = {
+ModifyBoardModal.propTypes = {
   isOpen: PropTypes.bool.isRequired,
   closeModal: PropTypes.func.isRequired,
-  addBoard: PropTypes.func.isRequired,
+  modifyBoard: PropTypes.func.isRequired,
+  board: PropTypes.object.isRequired,
 
 };
 
-export default AddBoardModal;
+export default ModifyBoardModal;

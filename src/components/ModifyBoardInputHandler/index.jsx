@@ -4,10 +4,11 @@ import {
 } from 'react-native';
 import styles from '../../styles/inputHandlers';
 
-const ListInputHandler = function ({ addList, closeModal }) {
+const ModifyBoardInputHandler = function ({ modifyBoard, closeModal, board}) {
   const [inputs, setInputs] = useState({
-    name: '',
-    color: '',
+    name: board.name,
+    description: board.description,
+    thumbnailPhoto: board.thumbnailPhoto,
   });
 
   const inputHandler = (name, value) => {
@@ -18,37 +19,46 @@ const ListInputHandler = function ({ addList, closeModal }) {
   };
 
   return (
-
     <KeyboardAvoidingView
       behavior="padding"
       enabled={false}
     >
+
       <Text style={styles.inputText}>Name</Text>
       <TextInput
-        style={styles.input}
+        placeholder={board.name}
         placeholderTextColor="gray"
-        placeholder="Enter list name"
         value={inputs.name}
         onChangeText={(text) => inputHandler('name', text)}
-      />
-      <Text style={styles.inputText}>Color</Text>
-      <TextInput
         style={styles.input}
+      />
+      <Text style={styles.inupText}>Description</Text>
+      <TextInput
+        placeholder={board.description}
         placeholderTextColor="gray"
-        placeholder="Enter color hex"
-        value={inputs.color}
-        onChangeText={(text) => inputHandler('color', text)}
+        value={inputs.description}
+        onChangeText={(text) => inputHandler('description', text)}
+        style={styles.input}
+      />
+      <Text style={styles.inputText}>Image URL</Text>
+      <TextInput
+        text="steven"
+        placeholderTextColor="gray"
+        placeholder={board.thumbnailPhoto}
+        value={inputs.thumbnailPhoto}
+        onChangeText={(text) => inputHandler('thumbnailPhoto', text)}
+        style={styles.input}
       />
       <View style={styles.buttonContainer}>
         <TouchableOpacity
-          onPress={() => addList(inputs)}
-          style={styles.button}
+          onPress={() => modifyBoard(inputs)}
+          style={styles.shadow, styles.button}
         >
-          <Text style={styles.text}>Add List</Text>
+          <Text style={styles.text}>Update board</Text>
         </TouchableOpacity>
         <TouchableOpacity
           onPress={closeModal}
-          style={styles.button}
+          style={styles.shadow, styles.button}
         >
           <Text style={styles.text}>Cancel</Text>
         </TouchableOpacity>
@@ -58,4 +68,4 @@ const ListInputHandler = function ({ addList, closeModal }) {
   );
 };
 
-export default ListInputHandler;
+export default ModifyBoardInputHandler;

@@ -1,8 +1,10 @@
 import { StyleSheet } from 'react-native';
 
 export default StyleSheet.create({
-  boardList: {
-    flex: 1,
-    alignItems: 'center',
+
+  modal: {
+    justifyContent: 'flex-end',
+    margin: 0,
+    position: 'absolute',
   },
 });

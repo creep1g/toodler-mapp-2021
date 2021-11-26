@@ -5,51 +5,48 @@ import TaskList from '../../components/TaskList';
 import AddModal from '../../components/AddTaskModal';
 import styles from './styles';
 
-const Tasks = function ( {route, navigation: { navigate } } ) {
+const Tasks = function ({ route, navigation: { navigate } }) {
+  // Fetch list id from route parameters
+  const { ListId } = route.params;
+  const { data } = route.params;
 
-	// Fetch list id from route parameters
-	const { ListId } = route.params;
-	let { data } = route.params;
+  // Filter out irrelevant tasks from out data stream
+  const [tasks, setTasks] = useState(data.getTasks(ListId));
 
-	// Filter out irrelevant tasks from out data stream
-	const [tasks, setTasks] = useState(data.getTasks(ListId));
+  // Selected tasks datastructure initialized
+  const [selectedTasks, setSelectedTasks] = useState([]);
 
-	// Selected tasks datastructure initialized
-	const [ selectedTasks, setSelectedTasks ] = useState([]);
-	
-	// Finished tasks datastructure initialized
-	const [ finishedTasks, setFinishedTasks ] = useState(data.getFinishedTasks(ListId));
-	// When tasks are marked finished they will be added to finisheTasks
-	const [isAddModalOpen, setIsAddModalOpen] = useState(false);
-	
-	const addFinished = id => {
-		if ( finishedTasks.indexOf(id) !== -1 ) {
-			setFinishedTasks(finishedTasks.filter(task => task !== id));
-		}
-		else{
-			setFinishedTasks([...finishedTasks, id])
-		}
-		data.markFinished(id);
-	};
+  // Finished tasks datastructure initialized
+  const [finishedTasks, setFinishedTasks] = useState(data.getFinishedTasks(ListId));
+  // When tasks are marked finished they will be added to finisheTasks
+  const [isAddModalOpen, setIsAddModalOpen] = useState(false);
 
-	const onTaskLongPress = id => {
-		if (selectedTasks.indexOf(id) !== -1) {
-			setSelectedTasks(selectedTasks.filter(task => task !== id));
-		}
-		else {
-			setSelectedTasks([...selectedTasks, id])		
-		}
-	}
+  const addFinished = (id) => {
+    if (finishedTasks.indexOf(id) !== -1) {
+      setFinishedTasks(finishedTasks.filter((task) => task !== id));
+    } else {
+      setFinishedTasks([...finishedTasks, id]);
+    }
+    data.markFinished(id);
+  };
 
-	const removeSelectedTasks = () => {
-		setTasks(tasks.filter((task) => !selectedTasks.includes(task.id)));
-		selectedTasks.forEach (
-			function(taskId){
-				data.deleteTask(taskId);
-			}
-		);
-		setSelectedTasks([]);
-	};
+  const onTaskLongPress = (id) => {
+    if (selectedTasks.indexOf(id) !== -1) {
+      setSelectedTasks(selectedTasks.filter((task) => task !== id));
+    } else {
+      setSelectedTasks([...selectedTasks, id]);
+    }
+  };
+
+  const removeSelectedTasks = () => {
+    setTasks(tasks.filter((task) => !selectedTasks.includes(task.id)));
+    selectedTasks.forEach(
+      (taskId) => {
+        data.deleteTask(taskId);
+      },
+    );
+    setSelectedTasks([]);
+  };
 
   const addTask = (input) => {
     const newTask = {
@@ -59,36 +56,35 @@ const Tasks = function ( {route, navigation: { navigate } } ) {
 	  isFinished: false,
 	  listId: ListId,
     };
-	setTasks([...tasks, newTask]);
-	setIsAddModalOpen(false);
+    setTasks([...tasks, newTask]);
+    setIsAddModalOpen(false);
   };
 
-	return (
-		<View style={[{ flex: 1 }]}>
-			<Toolbar 
-			  hasSelected={selectedTasks.length > 0} 
-			  onRemove={() => removeSelectedTasks()}
-			  name={"task"}
-			  onAdd={() => setIsAddModalOpen(true)}
-			/>
-			<View style={styles.container}>
-				<TaskList
-					tasks={tasks}
-					onLongPress={id => onTaskLongPress(id)}
-					onSelect={id => addFinished(id)}
-					addFinished={id => addFinished(id)}
-					selectedTasks={selectedTasks}
-					finishedTasks={finishedTasks}
-				/>
-			</View>
-			<AddModal
-				isOpen={isAddModalOpen}
-				closeModal={() => setIsAddModalOpen(false)}
-				addTask={(input) => addTask(input)}
-      		/>
-		</View>
+  return (
+    <View style={[{ flex: 1 }]}>
+      <Toolbar
+        hasSelected={selectedTasks.length}
+        onRemove={() => removeSelectedTasks()}
+        name="task"
+        onAdd={() => setIsAddModalOpen(true)}
+      />
+      <View style={styles.container}>
+        <TaskList
+          tasks={tasks}
+          onLongPress={(id) => onTaskLongPress(id)}
+          onSelect={(id) => addFinished(id)}
+          addFinished={(id) => addFinished(id)}
+          selectedTasks={selectedTasks}
+          finishedTasks={finishedTasks}
+        />
+      </View>
+      <AddModal
+        isOpen={isAddModalOpen}
+        closeModal={() => setIsAddModalOpen(false)}
+        addTask={(input) => addTask(input)}
+      />
+    </View>
   );
 };
 
 export default Tasks;
-
