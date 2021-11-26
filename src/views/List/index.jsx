@@ -5,17 +5,6 @@ import SubList from '../../components/SubList';
 import AddModal from '../../components/AddListModal';
 
 import styles from './styles';
-<<<<<<< HEAD
-import BoardData from '../../components/Services';
-
-const List = function ({ route, navigation }) {
-  const { BoardId } = route.params;
-
-  const [lists, setLists] = useState(
-    data.lists.filter((list) => list.boardId === BoardId),
-  );
-=======
-
 const List = function ({ route, navigation }) {
  
   const { BoardId } = route.params;  
@@ -23,7 +12,6 @@ const List = function ({ route, navigation }) {
   let {data} = route.params;
   
   const [lists, setLists] = useState(data.getLists(BoardId));
->>>>>>> aa6b84696d0385fb9ce2d32167504a9f072d58ed
 
   const [selectedLists, setSelectedLists] = useState([]);
 
@@ -39,15 +27,11 @@ const List = function ({ route, navigation }) {
 
   const removeSelectedLists = () => {
     setLists(lists.filter((list) => !selectedLists.includes(list.id)));
-<<<<<<< HEAD
-    setSelectedLists([]);
-=======
 	  selectedLists.forEach (
 		  function(listId){
 					  data.deleteList(listId);
 			});
 	setSelectedLists([]);
->>>>>>> aa6b84696d0385fb9ce2d32167504a9f072d58ed
   };
 
   const addList = (input) => {

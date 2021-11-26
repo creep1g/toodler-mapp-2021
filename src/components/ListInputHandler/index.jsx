@@ -1,13 +1,6 @@
 import React, { useState } from 'react';
-<<<<<<< HEAD
-import {
-  Text, View, TextInput, TouchableOpacity,
-} from 'react-native';
-import styles from './styles';
-=======
 import { Text, View, TextInput, TouchableOpacity, KeyboardAvoidingView } from 'react-native';
 import styles from '../../styles/inputHandlers';
->>>>>>> c8550a5 (Input handlers have been updated)
 
 const ListInputHandler = function ({ addList, closeModal }) {
   const [inputs, setInputs] = useState({
