@@ -7,6 +7,18 @@ export default StyleSheet.create({
 		justifyContent: 'center',
 		alignContent: 'center',
 		margin: 5,
+		borderColor: '#33fbF0',
+		padding: 10,
+		borderWidth: 0.4,
+		borderRadius: 15,
+		shadowColor: 'black',
+		shadowOpacity: 0.3,
+		shadowRadius: 2,
+		shadowOffset:{
+			height: 1,
+			width: 1
+		},
+		elevation: 4
 	},
 
     image: {
@@ -19,8 +31,8 @@ export default StyleSheet.create({
 		fontSize: 12,
 		fontWeight: "bold",
 		width: 125,
-		paddingLeft: 25,
 		paddingTop: 10,
+		textAlign: 'center'
 	},
 
 	checkmark: {

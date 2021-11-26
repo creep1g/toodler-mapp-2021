@@ -50,6 +50,19 @@ export default StyleSheet.create ({
 		top: 5,
 		right: 20,
 		fontSize: 16
+	},
+
+	shadow: {
+		// Shadow for iOS
+		shadowColor: 'black',
+		shadowOpacity: 0.3,
+		shadowRadius: 2,
+		shadowOffset:{
+			height: 1,
+			width: 1
+		},
+		// Elevation for android
+		elevation: 4
 	}
 	
 }); 

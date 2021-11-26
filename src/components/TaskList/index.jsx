@@ -33,7 +33,7 @@ const TaskList = ( {tasks, onLongPress, addFinished, onSelect, finishedTasks, se
 					<TouchableOpacity 
 						onPress={() => onSelect(id)}
 						onLongPress={() => onLongPress(id)}
-						style={[styles.card, {opacity: isSelected(id) ? .5 : 1}]} >
+						style={[styles.card, styles.shadow, {opacity: isSelected(id) ? .5 : 1}]} >
 						{
 							isSelected(id)
 							?

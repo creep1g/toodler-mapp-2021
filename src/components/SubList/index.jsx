@@ -3,31 +3,46 @@ import {
   View, FlatList, Text, TouchableOpacity,
 } from 'react-native';
 import styles from './styles';
+import { AntDesign } from '@expo/vector-icons';
 
 const SubList = function ({
-  lists, onLongPress, selectedLists, onSelect,
-}) {
-  return (
+	lists, onLongPress, selectedLists, onSelect}) {
+	
+	const isSelected = (id) => {
+		if (selectedLists.indexOf(id) !== -1){
+			return true;
+		}
+		else{
+			return false;
+		}
+	};
 
-    <FlatList
-      numColumns={2}
-      data={lists}
-      renderItem={({ item, index }) => (
-        <TouchableOpacity
-          style={[styles.list, { backgroundColor: item.color }]}
-          onLongPress={() => onLongPress(item.id)}
-          onPress={() => onSelect(item.id)}
-        >
-          <View name="listName" style={{ flex: 1 }}>
-            <Text style={styles.name}>
-              {' '}
-              { item.name }
-              {' '}
-            </Text>
-          </View>
-        </TouchableOpacity>
-      )}
-      keyExtractor={(item) => item.id}
+	return (
+		<FlatList
+    		numColumns={2}
+      		data={lists}
+      		renderItem={({ item }) => (
+        	<TouchableOpacity
+				style={[styles.list, styles.shadow, { backgroundColor: item.color, opacity: isSelected(item.id) ? .5 : 1}]}
+          	onLongPress={() => onLongPress(item.id)}
+          	onPress={() => onSelect(item.id)} >
+			{
+				isSelected(item.id)
+				?
+				<AntDesign name="checkcircleo" style={styles.selected}/>
+				:
+				<></>
+			}
+          	<View name="listName" style={{ flex: 1 }}>
+            	<Text style={styles.shadow, styles.name}>
+              	{' '}
+              	{ item.name }
+              	{' '}
+            	</Text>
+          	</View>
+        	</TouchableOpacity>
+      	)}
+      	keyExtractor={(item) => item.id}
     />
   );
 };
