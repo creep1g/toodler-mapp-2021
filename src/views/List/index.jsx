@@ -54,8 +54,7 @@ const List = function ({ route, navigation }) {
   const modifyList = (input) => {
     let list = getList();
     list.name = input.name;
-    list.description = input.description;
-    list.thumbnailPhoto = input.thumbnailPhoto;
+    list.color = input.color;
     setIsModifyModalOpen(false);
   };
 

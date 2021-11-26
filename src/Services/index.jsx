@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import data from '../../resources/data.json';
+import data from '../resources/data.json';
 
 class DataDog {
   boards;
@@ -48,6 +48,10 @@ class DataDog {
   // Lists
   getLists(callerId) {
     return this.lists.filter((value) => value.boardId === callerId);
+  }
+
+  getAllLists() {
+    return this.lists;
   }
 
   deleteList(id) {

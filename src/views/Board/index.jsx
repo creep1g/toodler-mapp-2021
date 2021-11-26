@@ -27,7 +27,6 @@ const Board = function ({ route, navigation: { navigate } }) {
 					  data.deleteBoard(boardId);
       },
     );
-
     setSelectedBoards([]);
   };
 

@@ -24,6 +24,10 @@ const Tasks = function ({ route, navigation: { navigate } }) {
 
   const [isModifyModalOpen, setIsModifyModalOpen] = useState(false);
 
+  const allLists = data.getAllLists();
+
+  const [value, setValue] = useState([]);
+
   const addFinished = (id) => {
     if (finishedTasks.indexOf(id) !== -1) {
       setFinishedTasks(finishedTasks.filter((task) => task !== id));
@@ -41,6 +45,7 @@ const Tasks = function ({ route, navigation: { navigate } }) {
     }
   };
 
+  /*
   const removeSelectedTasks = () => {
     setTasks(tasks.filter((task) => !selectedTasks.includes(task.id)));
     selectedTasks.forEach(
@@ -50,6 +55,7 @@ const Tasks = function ({ route, navigation: { navigate } }) {
     );
     setSelectedTasks([]);
   };
+  */
 
   const addTask = (input) => {
     const newTask = {
@@ -67,11 +73,16 @@ const Tasks = function ({ route, navigation: { navigate } }) {
   const getTask = () => tasks.filter((task) => task.id === selectedTasks[0])[0];
 
   const modifyTask = (input) => {
-    let task = getTask();
+    const task = getTask();
     task.name = input.name;
     task.description = input.description;
     task.listId = input.listId;
     setIsModifyModalOpen(false);
+    refresh();
+  };
+
+  const refresh = () => {
+    setValue([...value, 1]);
   };
 
   return (
@@ -103,6 +114,7 @@ const Tasks = function ({ route, navigation: { navigate } }) {
         closeModal={() => setIsModifyModalOpen(false)}
         modifyTask={(input) => modifyTask(input)}
         task={getTask()}
+        lists={allLists}
       />
     </View>
   );

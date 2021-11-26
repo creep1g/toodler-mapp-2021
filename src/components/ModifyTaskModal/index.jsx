@@ -5,7 +5,7 @@ import styles from './styles';
 import ModifyTaskInputHandler from '../ModifyTaskInputHandler';
 
 const ModifyTaskModal = function ({
-  isOpen, closeModal, modifyTask, task,
+  isOpen, closeModal, modifyTask, task, lists,
 }) {
   return (
     <Modal
@@ -13,12 +13,12 @@ const ModifyTaskModal = function ({
       isOpen={isOpen}
       closeModal={closeModal}
     >
-
       <ModifyTaskInputHandler
         style={styles.modal}
         closeModal={closeModal}
         modifyTask={modifyTask}
         task={task}
+        lists={lists}
       />
     </Modal>
   );
@@ -29,7 +29,6 @@ ModifyTaskModal.propTypes = {
   closeModal: PropTypes.func.isRequired,
   modifyTask: PropTypes.func.isRequired,
   task: PropTypes.object.isRequired,
-
 };
 
 export default ModifyTaskModal;
