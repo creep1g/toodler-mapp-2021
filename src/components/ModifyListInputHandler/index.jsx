@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
 import {
-  Text, View, TextInput, TouchableOpacity, KeyboardAvoidingView,
+  Text, View, TextInput, TouchableOpacity, KeyboardAvoidingView, Picker,
 } from 'react-native';
-import PropTypes from 'prop-types';
 import styles from '../../styles/inputHandlers';
 
-const ModifyListInputHandler = function ({ modifyList, closeModal, list }) {
+const ListInputHandler = function ({ modifyList, closeModal, list }) {
   const [inputs, setInputs] = useState({
     name: list.name,
     color: list.color,
@@ -17,6 +16,8 @@ const ModifyListInputHandler = function ({ modifyList, closeModal, list }) {
       [name]: value,
     });
   };
+
+  const colors = ['#5CD859', '#24A6D9', '#595BD9', '#8022D9', '#D159D8', '#D85963', '#D88559'];
 
   return (
 
@@ -33,13 +34,16 @@ const ModifyListInputHandler = function ({ modifyList, closeModal, list }) {
         onChangeText={(text) => inputHandler('name', text)}
       />
       <Text style={styles.inputText}>Color</Text>
-      <TextInput
-        style={styles.input}
-        placeholderTextColor="gray"
-        placeholder={list.color}
-        value={inputs.color}
-        onChangeText={(text) => inputHandler('color', text)}
-      />
+      <Picker
+        selectedValue={list.color}
+        itemStyle={{backgroundColor: list.color}}
+        onValueChange={(value) => inputHandler('color', value)}
+      >
+        <Picker.Item color={list.color} label={list.color} value={list.color} />
+        {
+          colors.map((colorr) => (<Picker.Item color={colorr} label={colorr} value={colorr} />))
+        }
+      </Picker>
       <View style={styles.buttonContainer}>
         <TouchableOpacity
           onPress={() => modifyList(inputs)}
@@ -59,9 +63,4 @@ const ModifyListInputHandler = function ({ modifyList, closeModal, list }) {
   );
 };
 
-ModifyListInputHandler.propTypes = {
-  modifyList: PropTypes.func.isRequired,
-  closeModal: PropTypes.func.isRequired,
-  list: PropTypes.object.isRequired,
-};
-export default ModifyListInputHandler;
+export default ListInputHandler;

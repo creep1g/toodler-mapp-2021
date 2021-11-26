@@ -52,9 +52,4 @@ export default StyleSheet.create({
     elevation: 3,
   },
 
-	colorpick: {
-		flex: 1,
-		height: 100
-		,
-	}
 });

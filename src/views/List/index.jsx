@@ -29,9 +29,9 @@ const List = function ({ route, navigation }) {
 
   const removeSelectedLists = () => {
     setLists(lists.filter((list) => !selectedLists.includes(list.id)));
-	  selectedLists.forEach(
-		  (listId) => {
-					  data.deleteList(listId);
+    selectedLists.forEach(
+      (listId) => {
+        data.deleteList(listId);
       },
     );
     setSelectedLists([]);
@@ -52,7 +52,7 @@ const List = function ({ route, navigation }) {
   const getList = () => lists.filter((list) => list.id === selectedLists[0])[0];
 
   const modifyList = (input) => {
-    let list = getList();
+    const list = getList();
     list.name = input.name;
     list.color = input.color;
     setIsModifyModalOpen(false);

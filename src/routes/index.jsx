@@ -1,6 +1,7 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
+import DataDog from '../Services';
 import Main from '../views/Main';
 import Board from '../views/Board';
 import List from '../views/List';
