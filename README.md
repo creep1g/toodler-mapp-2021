@@ -20,7 +20,5 @@ expo start
 - Color and List pickers when modifying tasks and lists are broken on iOS
 
 ## Demo
-
-
-https://user-images.githubusercontent.com/45407193/143660281-6246f47e-0c1a-41e0-8f94-f94683d1dcfb.mp4
+https://user-images.githubusercontent.com/45407193/143660621-54a69c5f-3bf6-4a9d-b7f7-a02b9949c430.mp4
 
