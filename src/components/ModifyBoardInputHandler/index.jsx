@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import {
   Text, View, TextInput, TouchableOpacity, KeyboardAvoidingView,
 } from 'react-native';
+import PropTypes from 'prop-types';
 import styles from '../../styles/inputHandlers';
 
 const ModifyBoardInputHandler = function ({ modifyBoard, closeModal, board }) {
@@ -66,6 +67,12 @@ const ModifyBoardInputHandler = function ({ modifyBoard, closeModal, board }) {
 
     </KeyboardAvoidingView>
   );
+};
+
+ModifyBoardInputHandler.propTypes = {
+  board: PropTypes.object.isRequired,
+  modifyBoard: PropTypes.func.isRequired,
+  closeModal: PropTypes.func.isRequired,
 };
 
 export default ModifyBoardInputHandler;

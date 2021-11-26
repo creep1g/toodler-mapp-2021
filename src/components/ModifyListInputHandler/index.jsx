@@ -2,9 +2,10 @@ import React, { useState } from 'react';
 import {
   Text, View, TextInput, TouchableOpacity, KeyboardAvoidingView, Picker,
 } from 'react-native';
+import PropTypes from 'prop-types';
 import styles from '../../styles/inputHandlers';
 
-const ListInputHandler = function ({ modifyList, closeModal, list }) {
+const ModifyListInputHandler = function ({ modifyList, closeModal, list }) {
   const [inputs, setInputs] = useState({
     name: list.name,
     color: list.color,
@@ -36,7 +37,7 @@ const ListInputHandler = function ({ modifyList, closeModal, list }) {
       <Text style={styles.inputText}>Color</Text>
       <Picker
         selectedValue={list.color}
-        itemStyle={{backgroundColor: list.color}}
+        itemStyle={{ backgroundColor: list.color }}
         onValueChange={(value) => inputHandler('color', value)}
       >
         <Picker.Item color={list.color} label={list.color} value={list.color} />
@@ -63,4 +64,9 @@ const ListInputHandler = function ({ modifyList, closeModal, list }) {
   );
 };
 
-export default ListInputHandler;
+ModifyListInputHandler.propTypes = {
+  modifyList: PropTypes.func.isRequired,
+  closeModal: PropTypes.func.isRequired,
+  list: PropTypes.object.isRequired,
+};
+export default ModifyListInputHandler;
