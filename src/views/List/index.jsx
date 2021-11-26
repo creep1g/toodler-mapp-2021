@@ -52,7 +52,7 @@ const List = function ({ route, navigation }) {
   const getList = () => lists.filter((list) => list.id === selectedLists[0])[0];
 
   const modifyList = (input) => {
-    const list = getList();
+    let list = getList();
     list.name = input.name;
     list.description = input.description;
     list.thumbnailPhoto = input.thumbnailPhoto;

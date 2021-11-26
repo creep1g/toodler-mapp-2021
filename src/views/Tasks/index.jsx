@@ -67,7 +67,7 @@ const Tasks = function ({ route, navigation: { navigate } }) {
   const getTask = () => tasks.filter((task) => task.id === selectedTasks[0])[0];
 
   const modifyTask = (input) => {
-    const task = getTask();
+    let task = getTask();
     task.name = input.name;
     task.description = input.description;
     task.listId = input.listId;
