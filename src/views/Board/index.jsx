@@ -5,14 +5,20 @@ import { View }
   from 'react-native';
 import Toolbar from '../../components/Toolbar';
 import BoardList from '../../components/BoardList';
-// import data from '../../resources/data.json';
 import styles from './styles';
+<<<<<<< HEAD
 import AddModal from '../../components/AddBoardModal';
 // import AddModal from '../../components/AddModal';
 
 const Board = function ({ route, navigation: { navigate } }) {
   const data = route.params;
 
+=======
+import AddBoardModal from '../../components/AddBoardModal';
+
+const Board = function ({route, navigation: { navigate } }) {
+  let data = route.params;
+>>>>>>> c8550a5 (Input handlers have been updated)
   const [boards, setBoards] = useState(data.getBoards());
 
   const [selectedBoards, setSelectedBoards] = useState([]);
@@ -67,7 +73,7 @@ const Board = function ({ route, navigation: { navigate } }) {
           boards={boards}
         />
       </View>
-      <AddModal
+      <AddBoardModal
         isOpen={isAddModalOpen}
         closeModal={() => setIsAddModalOpen(false)}
         addBoard={(input) => addBoard(input)}
