@@ -1,13 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
-  View, FlatList, Text, TouchableOpacity,
+  View, FlatList, Text, TouchableHighlight, TouchableOpacity,
 } from 'react-native';
-import PropTypes from 'prop-types';
 import { AntDesign } from '@expo/vector-icons';
 import styles from './styles';
 
 const TaskList = function ({
-  tasks, onLongPress, onSelect, finishedTasks, selectedTasks,
+  tasks, onLongPress, addFinished, onSelect, finishedTasks, selectedTasks,
 }) {
   const isSelected = (id) => {
     if (selectedTasks.indexOf(id) !== -1) {
@@ -38,15 +37,15 @@ const TaskList = function ({
             style={[styles.card, styles.shadow, { opacity: isSelected(id) ? 0.5 : 1 }]}
           >
             {
-isSelected(id)
-  ? <AntDesign name="checkcircleo" style={styles.selected} />
-  : <> </>
-          }
+							isSelected(id)
+							  ?							<AntDesign name="checkcircleo" style={styles.selected} />
+							  :							<></>
+						}
             {
-            isFinished(id)
-              ? <AntDesign name="checksquare" style={styles.finished} />
-              : <AntDesign name="checksquareo" style={styles.notFinished} />
-}
+							isFinished(id)
+							  ?								<AntDesign name="checksquare" style={styles.finished} />
+							  :								<AntDesign name="checksquareo" style={styles.notFinished} />
+						}
             {/* </TouchableHighlight> */}
             <View style={[styles.description, { opacity: isSelected ? 1 : 0.5 }]}>
               <Text style={styles.heading}>{ name }</Text>
@@ -54,20 +53,11 @@ isSelected(id)
             </View>
           </TouchableOpacity>
         )}
+
         keyExtractor={(task) => task.id}
       />
     </View>
   );
-};
-
-// tasks, onLongPress, onSelect, finishedTasks, selectedTasks,
-TaskList.propTypes = {
-  tasks: PropTypes.arrayOf(PropTypes.object).isRequired,
-  onLongPress: PropTypes.func.isRequired,
-  onSelect: PropTypes.func.isRequired,
-  finishedTasks: PropTypes.arrayOf(PropTypes.object).isRequired,
-  selectedTasks: PropTypes.arrayOf(PropTypes.number).isRequired,
-
 };
 
 export default TaskList;
