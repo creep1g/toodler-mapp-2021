@@ -1,13 +1,11 @@
 import React, { useState } from 'react';
 import {
-  Text, View, TextInput, TouchableOpacity, KeyboardAvoidingView, Picker,
+  Text, View, TextInput, TouchableOpacity, KeyboardAvoidingView, Picker
 } from 'react-native';
 import PropTypes from 'prop-types';
 import styles from '../../styles/inputHandlers';
 
-const TaskInputHandler = function ({
-  modifyTask, closeModal, task, lists,
-}) {
+const TaskInputHandler = function ({ modifyTask, closeModal, task, lists }) {
   const [inputs, setInputs] = useState({
     name: task.name,
     description: task.description,

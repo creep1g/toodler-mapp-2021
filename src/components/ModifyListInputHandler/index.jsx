@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import {
-  Text, View, TextInput, TouchableOpacity, KeyboardAvoidingView, Picker,
+  Text, View, TextInput, TouchableOpacity, KeyboardAvoidingView,
 } from 'react-native';
 import PropTypes from 'prop-types';
 import styles from '../../styles/inputHandlers';
@@ -18,8 +18,6 @@ const ModifyListInputHandler = function ({ modifyList, closeModal, list }) {
     });
   };
 
-  const colors = ['#5CD859', '#24A6D9', '#595BD9', '#8022D9', '#D159D8', '#D85963', '#D88559'];
-
   return (
 
     <KeyboardAvoidingView
@@ -35,6 +33,7 @@ const ModifyListInputHandler = function ({ modifyList, closeModal, list }) {
         onChangeText={(text) => inputHandler('name', text)}
       />
       <Text style={styles.inputText}>Color</Text>
+<<<<<<< HEAD
       <Picker
         selectedValue={list.color}
         itemStyle={{ backgroundColor: list.color }}
@@ -45,6 +44,15 @@ const ModifyListInputHandler = function ({ modifyList, closeModal, list }) {
           colors.map((colorr) => (<Picker.Item color={colorr} label={colorr} value={colorr} />))
         }
       </Picker>
+=======
+      <TextInput
+        style={styles.input}
+        placeholderTextColor="gray"
+        placeholder={list.color}
+        value={inputs.color}
+        onChangeText={(text) => inputHandler('color', text)}
+      />
+>>>>>>> parent of cd75ae2 (added a color picker to add/modify list)
       <View style={styles.buttonContainer}>
         <TouchableOpacity
           onPress={() => modifyList(inputs)}

@@ -45,6 +45,7 @@ const Tasks = function ({ route, navigation: { navigate } }) {
     }
   };
 
+  /*
   const removeSelectedTasks = () => {
     setTasks(tasks.filter((task) => !selectedTasks.includes(task.id)));
     selectedTasks.forEach(
@@ -54,6 +55,7 @@ const Tasks = function ({ route, navigation: { navigate } }) {
     );
     setSelectedTasks([]);
   };
+  */
 
   const addTask = (input) => {
     const newTask = {
@@ -76,6 +78,11 @@ const Tasks = function ({ route, navigation: { navigate } }) {
     task.description = input.description;
     task.listId = input.listId;
     setIsModifyModalOpen(false);
+    refresh();
+  };
+
+  const refresh = () => {
+    setValue([...value, 1]);
   };
 
   return (
