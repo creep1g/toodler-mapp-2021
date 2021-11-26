@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import {
   Text, View, TextInput, TouchableOpacity, KeyboardAvoidingView,
 } from 'react-native';
+import PropTypes from 'prop-types';
 import styles from '../../styles/inputHandlers';
 
 const BoardInputHandler = function ({ addBoard, closeModal }) {
@@ -52,13 +53,13 @@ const BoardInputHandler = function ({ addBoard, closeModal }) {
       <View style={styles.buttonContainer}>
         <TouchableOpacity
           onPress={() => addBoard(inputs)}
-          style={styles.shadow, styles.button}
+          style={[styles.shadow, styles.button]}
         >
           <Text style={styles.text}>Add board</Text>
         </TouchableOpacity>
         <TouchableOpacity
           onPress={closeModal}
-          style={styles.shadow, styles.button}
+          style={[styles.shadow, styles.button]}
         >
           <Text style={styles.text}>Cancel</Text>
         </TouchableOpacity>
@@ -66,6 +67,11 @@ const BoardInputHandler = function ({ addBoard, closeModal }) {
 
     </KeyboardAvoidingView>
   );
+};
+
+BoardInputHandler.propTypes = {
+  addBoard: PropTypes.func.isRequired,
+  closeModal: PropTypes.func.isRequired,
 };
 
 export default BoardInputHandler;

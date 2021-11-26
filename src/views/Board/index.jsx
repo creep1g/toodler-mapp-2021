@@ -1,5 +1,5 @@
 import React, {
-  useState, useLocalStorage, useEffect, useReducer,
+  useState,
 } from 'react';
 import { View }
   from 'react-native';
@@ -22,20 +22,19 @@ const Board = function ({ route, navigation: { navigate } }) {
   const removeSelectedBoards = () => {
     setBoards(boards.filter((board) => !selectedBoards.includes(board.id)));
 
-	  selectedBoards.forEach(
-		  (boardId) => {
-					  data.deleteBoard(boardId);
+    selectedBoards.forEach(
+      (boardId) => {
+        data.deleteBoard(boardId);
       },
     );
-
     setSelectedBoards([]);
   };
 
   const onBoardLongPress = (id) => {
     if (selectedBoards.indexOf(id) !== -1) {
-	  setSelectedBoards(selectedBoards.filter((board) => board !== id));
+      setSelectedBoards(selectedBoards.filter((board) => board !== id));
     } else {
-	  setSelectedBoards([...selectedBoards, id]);
+      setSelectedBoards([...selectedBoards, id]);
     }
   };
 

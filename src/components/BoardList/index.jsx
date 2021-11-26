@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, FlatList } from 'react-native';
+import PropTypes from 'prop-types';
 import ImageThumbnail from '../ImageThumbnail';
 
 const BoardList = function ({
@@ -24,6 +25,13 @@ const BoardList = function ({
       />
     </View>
   );
+};
+
+BoardList.propTypes = {
+  boards: PropTypes.arrayOf(Object).isRequired,
+  selectedBoards: PropTypes.arrayOf(Object).isRequired,
+  onLongPress: PropTypes.func.isRequired,
+  onSelect: PropTypes.func.isRequired,
 };
 
 export default BoardList;

@@ -29,9 +29,9 @@ const List = function ({ route, navigation }) {
 
   const removeSelectedLists = () => {
     setLists(lists.filter((list) => !selectedLists.includes(list.id)));
-	  selectedLists.forEach(
-		  (listId) => {
-					  data.deleteList(listId);
+    selectedLists.forEach(
+      (listId) => {
+        data.deleteList(listId);
       },
     );
     setSelectedLists([]);
@@ -54,8 +54,7 @@ const List = function ({ route, navigation }) {
   const modifyList = (input) => {
     const list = getList();
     list.name = input.name;
-    list.description = input.description;
-    list.thumbnailPhoto = input.thumbnailPhoto;
+    list.color = input.color;
     setIsModifyModalOpen(false);
   };
 

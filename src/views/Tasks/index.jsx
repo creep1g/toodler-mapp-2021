@@ -24,6 +24,10 @@ const Tasks = function ({ route, navigation: { navigate } }) {
 
   const [isModifyModalOpen, setIsModifyModalOpen] = useState(false);
 
+  const allLists = data.getAllLists();
+
+  const [value, setValue] = useState([]);
+
   const addFinished = (id) => {
     if (finishedTasks.indexOf(id) !== -1) {
       setFinishedTasks(finishedTasks.filter((task) => task !== id));
@@ -103,6 +107,7 @@ const Tasks = function ({ route, navigation: { navigate } }) {
         closeModal={() => setIsModifyModalOpen(false)}
         modifyTask={(input) => modifyTask(input)}
         task={getTask()}
+        lists={allLists}
       />
     </View>
   );

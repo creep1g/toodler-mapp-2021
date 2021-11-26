@@ -1,14 +1,17 @@
 import React, { useState } from 'react';
 import {
-  Text, View, TextInput, TouchableOpacity, KeyboardAvoidingView,
+  Text, View, TextInput, TouchableOpacity, KeyboardAvoidingView, Picker,
 } from 'react-native';
+import PropTypes from 'prop-types';
 import styles from '../../styles/inputHandlers';
 
-const TaskInputHandler = function ({ modifyTask, closeModal, task }) {
+const TaskInputHandler = function ({
+  modifyTask, closeModal, task, lists,
+}) {
   const [inputs, setInputs] = useState({
     name: task.name,
     description: task.description,
-    listId: task.listId,
+    listId: task.id,
   });
 
   const inputHandler = (name, value) => {
@@ -20,7 +23,6 @@ const TaskInputHandler = function ({ modifyTask, closeModal, task }) {
 
   return (
     <KeyboardAvoidingView
-
       behavior="padding"
       enabled={false}
     >
@@ -41,13 +43,15 @@ const TaskInputHandler = function ({ modifyTask, closeModal, task }) {
         value={inputs.description}
         onChangeText={(text) => inputHandler('description', text)}
       />
-      <TextInput
-        style={styles.input}
-        placeholderTextColor="gray"
-        placeholder={task.listId}
-        value={inputs.listId}
-        onChangeText={(text) => inputHandler('listId', text)}
-      />
+      <Text style={styles.inputText}>List</Text>
+      <Picker
+        selectedValue={task.listId}
+        onValueChange={(value) => inputHandler('listId', value)}
+      >
+        {
+        lists.map((list) => (<Picker.Item key={list.id} label={list.name} value={list.id} />))
+        }
+      </Picker>
       <View style={styles.buttonContainer}>
         <TouchableOpacity
           style={styles.button}
@@ -65,6 +69,13 @@ const TaskInputHandler = function ({ modifyTask, closeModal, task }) {
 
     </KeyboardAvoidingView>
   );
+};
+
+TaskInputHandler.propTypes = {
+  modifyTask: PropTypes.func.isRequired,
+  closeModal: PropTypes.func.isRequired,
+  task: PropTypes.object.isRequired,
+  lists: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 export default TaskInputHandler;

@@ -4,7 +4,7 @@ import {
 } from 'react-native';
 import logo from '../../resources/main_logo.jpg';
 import styles from './styles';
-import DataDog from '../../components/Services';
+import DataDog from '../../Services';
 
 const Main = function ({ navigation: { navigate } }) {
   const Data = new DataDog();
