@@ -60,7 +60,7 @@ const TaskList = function ({
 };
 
 TaskList.propTypes = {
-  tasks: PropTypes.arrayOf(PropTypes.object).isRequired,
+  // tasks: PropTypes.arrayOf(PropTypes.object).isRequired,
   onLongPress: PropTypes.func.isRequired,
   onSelect: PropTypes.func.isRequired,
   finishedTasks: PropTypes.arrayOf(PropTypes.number).isRequired,

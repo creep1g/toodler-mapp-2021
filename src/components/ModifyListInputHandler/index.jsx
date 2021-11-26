@@ -67,6 +67,6 @@ const ModifyListInputHandler = function ({ modifyList, closeModal, list }) {
 ModifyListInputHandler.propTypes = {
   modifyList: PropTypes.func.isRequired,
   closeModal: PropTypes.func.isRequired,
-  list: PropTypes.object.isRequired,
+  // list: PropTypes.object.isRequired,
 };
 export default ModifyListInputHandler;

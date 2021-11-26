@@ -70,7 +70,7 @@ const ModifyBoardInputHandler = function ({ modifyBoard, closeModal, board }) {
 };
 
 ModifyBoardInputHandler.propTypes = {
-  board: PropTypes.object.isRequired,
+  // board: PropTypes.object.isRequired,
   modifyBoard: PropTypes.func.isRequired,
   closeModal: PropTypes.func.isRequired,
 };
