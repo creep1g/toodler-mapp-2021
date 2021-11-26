@@ -3,7 +3,6 @@ import { View, Text } from 'react-native';
 import Toolbar from '../../components/Toolbar';
 import SubList from '../../components/SubList';
 import AddModal from '../../components/AddListModal';
-
 import styles from './styles';
 const List = function ({ route, navigation }) {
  
@@ -36,14 +35,14 @@ const List = function ({ route, navigation }) {
 
   const addList = (input) => {
     const newList = {
-      id: data.lists.length + 1,
+      id: data.listNextId(),
       name: input.name,
       color: input.color,
       boardId: BoardId,
     };
-    console.log(newList);
     setLists([...lists, newList]);
     setIsAddModalOpen(false);
+	data.addList(newList);
   };
 
   // Render list

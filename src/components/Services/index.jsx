@@ -20,6 +20,7 @@ class DataDog {
 		this.boardCounter = this.boards.length;
 		this.listCounter = this.lists.length;
 	}
+
 	// Boards
 	getBoards () {
 		return this.boards;
@@ -82,7 +83,6 @@ class DataDog {
 				}
 			}
 		);
-		
 	}
 	
 	taskNextId () {
