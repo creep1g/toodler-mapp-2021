@@ -61,7 +61,6 @@ const Board = function ({ route, navigation: { navigate } }) {
     setIsModifyModalOpen(false);
   };
 
-
   return (
     <View style={{ flex: 1 }}>
       <Toolbar
