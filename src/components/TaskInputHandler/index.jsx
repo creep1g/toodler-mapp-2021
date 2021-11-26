@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import {
   Text, View, TextInput, TouchableOpacity, KeyboardAvoidingView,
 } from 'react-native';
-import PropTypes from 'prop-types';
 import styles from '../../styles/inputHandlers';
 
 const TaskInputHandler = function ({ addTask, closeModal }) {
@@ -20,6 +19,7 @@ const TaskInputHandler = function ({ addTask, closeModal }) {
 
   return (
     <KeyboardAvoidingView
+
       behavior="padding"
       enabled={false}
     >
@@ -57,11 +57,6 @@ const TaskInputHandler = function ({ addTask, closeModal }) {
 
     </KeyboardAvoidingView>
   );
-};
-
-TaskInputHandler.propTypes = {
-  addTask: PropTypes.func.isRequired,
-  closeModal: PropTypes.func.isRequired,
 };
 
 export default TaskInputHandler;

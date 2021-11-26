@@ -2,7 +2,6 @@ import React from 'react';
 import {
   View, Image, Text, TouchableOpacity,
 } from 'react-native';
-import PropTypes from 'prop-types';
 import { AntDesign } from '@expo/vector-icons';
 import styles from './styles';
 
@@ -33,15 +32,6 @@ const ImageThumbnail = function ({
       </View>
     </TouchableOpacity>
   );
-};
-
-ImageThumbnail.propTypes = {
-  file: PropTypes.string.isRequired,
-  name: PropTypes.string.isRequired,
-  id: PropTypes.number.isRequired,
-  onLongPress: PropTypes.func.isRequired,
-  isSelected: PropTypes.bool.isRequired,
-  onSelect: PropTypes.func.isRequired,
 };
 
 export default ImageThumbnail;

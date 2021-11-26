@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import {
   Text, View, TextInput, TouchableOpacity, KeyboardAvoidingView, Picker,
 } from 'react-native';
-import PropTypes from 'prop-types';
 import styles from '../../styles/inputHandlers';
 
 const TaskInputHandler = function ({
@@ -43,7 +42,6 @@ const TaskInputHandler = function ({
         value={inputs.description}
         onChangeText={(text) => inputHandler('description', text)}
       />
-      <Text style={styles.inputText}>List</Text>
       <Picker
         selectedValue={task.listId}
         onValueChange={(value) => inputHandler('listId', value)}
@@ -69,13 +67,6 @@ const TaskInputHandler = function ({
 
     </KeyboardAvoidingView>
   );
-};
-
-TaskInputHandler.propTypes = {
-  modifyTask: PropTypes.func.isRequired,
-  closeModal: PropTypes.func.isRequired,
-  task: PropTypes.object.isRequired,
-  lists: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 export default TaskInputHandler;

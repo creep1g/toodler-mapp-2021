@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import {
   Text, View, TextInput, TouchableOpacity, KeyboardAvoidingView, Picker,
 } from 'react-native';
-import PropTypes from 'prop-types';
 import styles from '../../styles/inputHandlers';
 
 const ListInputHandler = function ({ addList, closeModal }) {
@@ -59,11 +58,6 @@ const ListInputHandler = function ({ addList, closeModal }) {
 
     </KeyboardAvoidingView>
   );
-};
-
-ListInputHandler.propTypes = {
-  addList: PropTypes.func.isRequired,
-  closeModal: PropTypes.func.isRequired,
 };
 
 export default ListInputHandler;
