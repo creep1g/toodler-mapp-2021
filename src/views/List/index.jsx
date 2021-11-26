@@ -2,7 +2,8 @@ import React, { useState, setState, useEffect } from 'react';
 import { View, Text } from 'react-native';
 import Toolbar from '../../components/Toolbar';
 import SubList from '../../components/SubList';
-import AddModal from '../../components/AddListModal';
+import AddListModal from '../../components/AddListModal';
+import ModifyListModal from '../../components/ModifyListModal';
 import styles from './styles';
 
 const List = function ({ route, navigation }) {
@@ -15,6 +16,8 @@ const List = function ({ route, navigation }) {
   const [selectedLists, setSelectedLists] = useState([]);
 
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
+
+  const [isModifyModalOpen, setIsModifyModalOpen] = useState(false);
 
   const onListLongPress = (id) => {
     if (selectedLists.indexOf(id) !== -1) {
@@ -43,7 +46,17 @@ const List = function ({ route, navigation }) {
     };
     setLists([...lists, newList]);
     setIsAddModalOpen(false);
-	data.addList(newList);
+    data.addList(newList);
+  };
+
+  const getList = () => lists.filter((list) => list.id === selectedLists[0])[0];
+
+  const modifyList = (input) => {
+    const list = getList();
+    list.name = input.name;
+    list.description = input.description;
+    list.thumbnailPhoto = input.thumbnailPhoto;
+    setIsModifyModalOpen(false);
   };
 
   // Render list
@@ -54,6 +67,7 @@ const List = function ({ route, navigation }) {
         name="list"
         onRemove={() => removeSelectedLists()}
         onAdd={() => setIsAddModalOpen(true)}
+        onModify={() => setIsModifyModalOpen(true)}
       />
       <SubList
         lists={lists}
@@ -62,11 +76,17 @@ const List = function ({ route, navigation }) {
         selectedLists={selectedLists}
         onSelect={(id) => navigation.navigate('Tasks', { data, ListId: id, BoardId })}
       />
-      <AddModal
+      <AddListModal
         isOpen={isAddModalOpen}
         closeModal={() => setIsAddModalOpen(false)}
         addList={(input) => addList(input)}
         name="list"
+      />
+      <ModifyListModal
+        isOpen={isModifyModalOpen}
+        closeModal={() => setIsModifyModalOpen(false)}
+        modifyList={(input) => modifyList(input)}
+        list={getList()}
       />
     </View>
   );

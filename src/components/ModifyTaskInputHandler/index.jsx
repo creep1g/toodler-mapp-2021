@@ -4,10 +4,11 @@ import {
 } from 'react-native';
 import styles from '../../styles/inputHandlers';
 
-const TaskInputHandler = function ({ addTask, closeModal }) {
+const TaskInputHandler = function ({ modifyTask, closeModal, task }) {
   const [inputs, setInputs] = useState({
-    name: '',
-    description: '',
+    name: task.name,
+    description: task.description,
+    listId: task.listId,
   });
 
   const inputHandler = (name, value) => {
@@ -28,7 +29,7 @@ const TaskInputHandler = function ({ addTask, closeModal }) {
       <TextInput
         style={styles.input}
         placeholderTextColor="gray"
-        placeholder="Enter task name"
+        placeholder={task.name}
         value={inputs.name}
         onChangeText={(text) => inputHandler('name', text)}
       />
@@ -36,16 +37,23 @@ const TaskInputHandler = function ({ addTask, closeModal }) {
       <TextInput
         style={styles.input}
         placeholderTextColor="gray"
-        placeholder="Enter description"
+        placeholder={task.description}
         value={inputs.description}
         onChangeText={(text) => inputHandler('description', text)}
+      />
+      <TextInput
+        style={styles.input}
+        placeholderTextColor="gray"
+        placeholder={task.listId}
+        value={inputs.listId}
+        onChangeText={(text) => inputHandler('listId', text)}
       />
       <View style={styles.buttonContainer}>
         <TouchableOpacity
           style={styles.button}
-          onPress={() => addTask(inputs)}
+          onPress={() => modifyTask(inputs)}
         >
-          <Text style={styles.text}>Add Task</Text>
+          <Text style={styles.text}>Update Task</Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.button}

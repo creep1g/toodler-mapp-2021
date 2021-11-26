@@ -4,10 +4,10 @@ import {
 } from 'react-native';
 import styles from '../../styles/inputHandlers';
 
-const TaskInputHandler = function ({ addTask, closeModal }) {
+const ListInputHandler = function ({ modifyList, closeModal, list }) {
   const [inputs, setInputs] = useState({
-    name: '',
-    description: '',
+    name: list.name,
+    color: list.color,
   });
 
   const inputHandler = (name, value) => {
@@ -18,38 +18,37 @@ const TaskInputHandler = function ({ addTask, closeModal }) {
   };
 
   return (
-    <KeyboardAvoidingView
 
+    <KeyboardAvoidingView
       behavior="padding"
       enabled={false}
     >
-
       <Text style={styles.inputText}>Name</Text>
       <TextInput
         style={styles.input}
         placeholderTextColor="gray"
-        placeholder="Enter task name"
+        placeholder={list.name}
         value={inputs.name}
         onChangeText={(text) => inputHandler('name', text)}
       />
-      <Text style={styles.inputText}>Description</Text>
+      <Text style={styles.inputText}>Color</Text>
       <TextInput
         style={styles.input}
         placeholderTextColor="gray"
-        placeholder="Enter description"
-        value={inputs.description}
-        onChangeText={(text) => inputHandler('description', text)}
+        placeholder={list.color}
+        value={inputs.color}
+        onChangeText={(text) => inputHandler('color', text)}
       />
       <View style={styles.buttonContainer}>
         <TouchableOpacity
+          onPress={() => modifyList(inputs)}
           style={styles.button}
-          onPress={() => addTask(inputs)}
         >
-          <Text style={styles.text}>Add Task</Text>
+          <Text style={styles.text}>Update list</Text>
         </TouchableOpacity>
         <TouchableOpacity
-          style={styles.button}
           onPress={closeModal}
+          style={styles.button}
         >
           <Text style={styles.text}>Cancel</Text>
         </TouchableOpacity>
@@ -59,4 +58,4 @@ const TaskInputHandler = function ({ addTask, closeModal }) {
   );
 };
 
-export default TaskInputHandler;
+export default ListInputHandler;
