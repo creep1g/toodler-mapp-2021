@@ -38,7 +38,7 @@ const Board = function ({route, navigation: { navigate } }) {
 
   const addBoard = (input) => {
     const newBoard = {
-      id: boards.length + 1,
+      id: data.boardNextId(),
       name: input.name,
       description: input.description,
       thumbnailPhoto: input.thumbnailPhoto,

@@ -87,6 +87,7 @@ class DataDog {
 	
 	taskNextId () {
 		this.taskCounter++;
+		return this.taskCounter;
 	}
 	addTask (task) {
 		this.tasks.push(task);
