@@ -1,2 +1,22 @@
-# toodler-mapp-2021
-Toodler You have been contacted by a world recognized agency called Umbrella and they specialize in  making project management tools and are particularly interested in the Kanban technique. They  are currently working on a product called Toodler and it hasn’t been successful lately because of  their inability to develop apps. Because they don’t know how to make apps they need your help  to create this fantastic product using React Native. As always failure is not an option! 
+# Toodler
+Toodler is a simple Todo list application which feautures boards populated by lists of tasks
+
+## Requirements
+npm
+expo-cli
+
+## Installing
+```
+git clone git@github.com:creep1g/toodler-mapp-2021
+cd toodler-mapp-2021
+npm install package.json
+expo install
+expo start
+
+```
+## Known Bugs
+- Some PropTypes are not working correctly causing warnings in the console
+- Tasks do note leave the state when moved to a different Board List, however they are moved upon refreshed.
+- Color and List pickers when modifying tasks and lists are broken on iOS
+
+## Demo
