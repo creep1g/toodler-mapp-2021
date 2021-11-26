@@ -2,9 +2,10 @@ import React, { useState } from 'react';
 import {
   Text, View, TextInput, TouchableOpacity, KeyboardAvoidingView, Picker,
 } from 'react-native';
+import PropTypes from 'prop-types';
 import styles from '../../styles/inputHandlers';
 
-const ListInputHandler = function ({ modifyList, closeModal, list }) {
+const ModifyListInputHandler = function ({ modifyList, closeModal, list }) {
   const [inputs, setInputs] = useState({
     name: list.name,
     color: list.color,
@@ -63,4 +64,9 @@ const ListInputHandler = function ({ modifyList, closeModal, list }) {
   );
 };
 
-export default ListInputHandler;
+ModifyListInputHandler.propTypes = {
+  modifyList: PropTypes.func.isRequired,
+  closeModal: PropTypes.func.isRequired,
+  // list: PropTypes.object.isRequired,
+};
+export default ModifyListInputHandler;

@@ -28,8 +28,6 @@ ModifyBoardModal.propTypes = {
   isOpen: PropTypes.bool.isRequired,
   closeModal: PropTypes.func.isRequired,
   modifyBoard: PropTypes.func.isRequired,
-  board: PropTypes.object.isRequired,
-
 };
 
 export default ModifyBoardModal;

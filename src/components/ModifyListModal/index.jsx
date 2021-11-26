@@ -28,7 +28,7 @@ ModifyListModal.propTypes = {
   isOpen: PropTypes.bool.isRequired,
   closeModal: PropTypes.func.isRequired,
   modifyList: PropTypes.func.isRequired,
-  list: PropTypes.object.isRequired,
+  // list: PropTypes.object.isRequired,
 
 };
 

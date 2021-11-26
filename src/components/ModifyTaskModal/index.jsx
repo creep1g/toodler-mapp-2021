@@ -28,7 +28,8 @@ ModifyTaskModal.propTypes = {
   isOpen: PropTypes.bool.isRequired,
   closeModal: PropTypes.func.isRequired,
   modifyTask: PropTypes.func.isRequired,
-  task: PropTypes.object.isRequired,
+  // task: PropTypes.object.isRequired,
+  lists: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 export default ModifyTaskModal;

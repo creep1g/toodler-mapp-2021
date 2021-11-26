@@ -1,12 +1,13 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {
-  View, FlatList, Text, TouchableHighlight, TouchableOpacity,
+  View, FlatList, Text, TouchableOpacity,
 } from 'react-native';
+import PropTypes from 'prop-types';
 import { AntDesign } from '@expo/vector-icons';
 import styles from './styles';
 
 const TaskList = function ({
-  tasks, onLongPress, addFinished, onSelect, finishedTasks, selectedTasks,
+  tasks, onLongPress, onSelect, finishedTasks, selectedTasks,
 }) {
   const isSelected = (id) => {
     if (selectedTasks.indexOf(id) !== -1) {
@@ -53,7 +54,6 @@ const TaskList = function ({
             </View>
           </TouchableOpacity>
         )}
-
         keyExtractor={(task) => task.id}
       />
     </View>
@@ -61,7 +61,7 @@ const TaskList = function ({
 };
 
 TaskList.propTypes = {
-  tasks: PropTypes.arrayOf(PropTypes.object).isRequired,
+  // tasks: PropTypes.arrayOf(PropTypes.object).isRequired,
   onLongPress: PropTypes.func.isRequired,
   onSelect: PropTypes.func.isRequired,
   finishedTasks: PropTypes.arrayOf(PropTypes.number).isRequired,
