@@ -14,10 +14,10 @@ const ImageThumbnail = function ({
       onPress={() => onSelect(id)}
     >
       {
-		  	isSelected
-		  		?		 		<AntDesign name="checkcircleo" style={styles.checkmark} />
-		  	  : <></>
-		  }
+        isSelected
+          ?       <AntDesign name="checkcircleo" style={styles.checkmark} />
+          : <></>
+      }
       <View style={[styles.view, { opacity: isSelected ? 0.5 : 1 }]}>
         <Text style={styles.text}>
           {' '}

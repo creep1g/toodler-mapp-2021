@@ -27,10 +27,11 @@ const SubList = function ({
           onPress={() => onSelect(item.id)}
         >
           {
-				isSelected(item.id)
-				  ?				<AntDesign name="checkcircleo" style={styles.selected} />
-				  :				<></>
-			}
+        isSelected(item.id)
+? <AntDesign name="checkcircleo" style={styles.selected} />
+: <></>
+          }
+
           <View name="listName" style={{ flex: 1 }}>
             <Text style={styles.shadow, styles.name}>
               {' '}
