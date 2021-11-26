@@ -50,14 +50,15 @@ const Tasks = function ({ route, navigation: { navigate } }) {
 
   const addTask = (input) => {
     const newTask = {
-      id: data.tasks.length + 1,
+	  id: data.taskNextId(),
       name: input.name,
 	  description: input.description,
 	  isFinished: false,
 	  listId: ListId,
     };
-    setTasks([...tasks, newTask]);
-    setIsAddModalOpen(false);
+	setTasks([...tasks, newTask]);
+	setIsAddModalOpen(false);
+	data.addTask(newTask);
   };
 
   return (
