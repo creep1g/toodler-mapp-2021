@@ -33,16 +33,6 @@ const ModifyListInputHandler = function ({ modifyList, closeModal, list }) {
         onChangeText={(text) => inputHandler('name', text)}
       />
       <Text style={styles.inputText}>Color</Text>
-      <Picker
-        selectedValue={list.color}
-        itemStyle={{ backgroundColor: list.color }}
-        onValueChange={(value) => inputHandler('color', value)}
-      >
-        <Picker.Item color={list.color} label={list.color} value={list.color} />
-        {
-          colors.map((colorr) => (<Picker.Item color={colorr} label={colorr} value={colorr} />))
-        }
-      </Picker>
       <TextInput
         style={styles.input}
         placeholderTextColor="gray"
