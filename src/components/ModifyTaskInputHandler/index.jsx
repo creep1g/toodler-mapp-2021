@@ -43,6 +43,7 @@ const TaskInputHandler = function ({
         value={inputs.description}
         onChangeText={(text) => inputHandler('description', text)}
       />
+      <Text style={styles.inputText}>List</Text>
       <Picker
         selectedValue={task.listId}
         onValueChange={(value) => inputHandler('listId', value)}
