@@ -50,7 +50,6 @@ const ModifyListInputHandler = function ({ modifyList, closeModal, list }) {
         value={inputs.color}
         onChangeText={(text) => inputHandler('color', text)}
       />
-
       <View style={styles.buttonContainer}>
         <TouchableOpacity
           onPress={() => modifyList(inputs)}
