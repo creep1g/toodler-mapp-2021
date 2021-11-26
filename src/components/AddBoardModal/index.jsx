@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Modal from '../Modal';
-// import styles from './styles';
+import styles from './styles';
 import BoardInputHandler from '../BoardInputHandler';
 
 const AddBoardModal = function ({
@@ -9,10 +9,13 @@ const AddBoardModal = function ({
 }) {
   return (
     <Modal
+	  style={styles.modal}
       isOpen={isOpen}
       closeModal={closeModal}
     >
+
       <BoardInputHandler
+	  	style={styles.modal}
         closeModal={closeModal}
         addBoard={addBoard}
       />

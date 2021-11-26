@@ -1,16 +1,15 @@
-import React, { useState, useLocalStorage, useEffect, useReducer } from 'react';
+import React, {
+  useState, useLocalStorage, useEffect, useReducer,
+} from 'react';
 import { View }
   from 'react-native';
 import Toolbar from '../../components/Toolbar';
 import BoardList from '../../components/BoardList';
-// import data from '../../resources/data.json';
 import styles from './styles';
-import AddModal from '../../components/AddModal';
-// import AddModal from '../../components/AddModal';
+import AddBoardModal from '../../components/AddBoardModal';
 
 const Board = function ({route, navigation: { navigate } }) {
   let data = route.params;
-
   const [boards, setBoards] = useState(data.getBoards());
 
   const [selectedBoards, setSelectedBoards] = useState([]);
@@ -18,22 +17,23 @@ const Board = function ({route, navigation: { navigate } }) {
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
 
   const removeSelectedBoards = () => {
-	setBoards(boards.filter((board) => !selectedBoards.includes(board.id)));
-	
-	  selectedBoards.forEach (
-		  function(boardId){
+    setBoards(boards.filter((board) => !selectedBoards.includes(board.id)));
+
+	  selectedBoards.forEach(
+		  (boardId) => {
 					  data.deleteBoard(boardId);
-			});
-				  
-	setSelectedBoards([]);
+      },
+    );
+
+    setSelectedBoards([]);
   };
 
   const onBoardLongPress = (id) => {
-	if (selectedBoards.indexOf(id) !== -1) {
+    if (selectedBoards.indexOf(id) !== -1) {
 	  setSelectedBoards(selectedBoards.filter((board) => board !== id));
-	} else {
+    } else {
 	  setSelectedBoards([...selectedBoards, id]);
-	}
+    }
   };
 
   const addBoard = (input) => {
@@ -45,7 +45,7 @@ const Board = function ({route, navigation: { navigate } }) {
     };
     setBoards([...boards, newBoard]);
     setIsAddModalOpen(false);
-	data.addBoard(newBoard);
+    data.addBoard(newBoard);
   };
 
   return (
@@ -59,13 +59,12 @@ const Board = function ({route, navigation: { navigate } }) {
       <View style={styles.boardList}>
         <BoardList
           onLongPress={(id) => onBoardLongPress(id)}
-          // onBoardPress={(id) => onBoardPress(id)}
-          onSelect={(id) => navigate('List', { BoardId: id })}
+			onSelect={(id) => navigate('List', {data: data, BoardId: id })}
           selectedBoards={selectedBoards}
           boards={boards}
         />
       </View>
-      <AddModal
+      <AddBoardModal
         isOpen={isAddModalOpen}
         closeModal={() => setIsAddModalOpen(false)}
         addBoard={(input) => addBoard(input)}

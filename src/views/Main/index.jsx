@@ -6,9 +6,8 @@ import logo from '../../resources/main_logo.jpg';
 import styles from './styles';
 import DataDog from '../../components/Services';
 
-
 const Main = function ({ navigation: { navigate } }) {
-const Data = new DataDog();
+  const Data = new DataDog();
   return (
     <View style={styles.container}>
       <Image source={logo} style={styles.logo} />
