@@ -33,7 +33,6 @@ const ModifyListInputHandler = function ({ modifyList, closeModal, list }) {
         onChangeText={(text) => inputHandler('name', text)}
       />
       <Text style={styles.inputText}>Color</Text>
-<<<<<<< HEAD
       <Picker
         selectedValue={list.color}
         itemStyle={{ backgroundColor: list.color }}
@@ -44,7 +43,6 @@ const ModifyListInputHandler = function ({ modifyList, closeModal, list }) {
           colors.map((colorr) => (<Picker.Item color={colorr} label={colorr} value={colorr} />))
         }
       </Picker>
-=======
       <TextInput
         style={styles.input}
         placeholderTextColor="gray"
@@ -52,7 +50,7 @@ const ModifyListInputHandler = function ({ modifyList, closeModal, list }) {
         value={inputs.color}
         onChangeText={(text) => inputHandler('color', text)}
       />
->>>>>>> parent of cd75ae2 (added a color picker to add/modify list)
+
       <View style={styles.buttonContainer}>
         <TouchableOpacity
           onPress={() => modifyList(inputs)}
