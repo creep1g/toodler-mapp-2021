@@ -6,15 +6,21 @@ class DataDog {
 	lists;
 	tasks;
 	finishedTasks;
+	listCounter;
+	boardCounter;
+	taskCounter;
 
 	constructor () {
 		this.boards = data.boards;
 		this.lists = data.lists;
 		this.tasks = data.tasks;
-		finishedTasks = [];
+		this.finishedTasks = [];
 		this.populateFinished();
+		this.taskCounter = this.tasks.length;
+		this.boardCounter = this.boards.length;
+		this.listCounter = this.lists.length;
 	}
-	
+	// Boards
 	getBoards () {
 		return this.boards;
 	}
@@ -29,6 +35,11 @@ class DataDog {
 		});
 	}
 	
+	boardNextId () {
+		this.boardCounter++;
+		return this.boardCounter;
+	}
+	// Lists
 	getLists (callerId) {
 		return this.lists.filter(function(value){
 			return value.boardId === callerId;
@@ -45,6 +56,12 @@ class DataDog {
 		this.lists.push(list);
 	}
 
+	listNextId () {
+		this.listCounter++;
+		return this.listCounter; 
+	}
+
+	// Tasks
 	getTasks (callerId){
 		return this.tasks.filter(function(value){
 			return value.listId === callerId;
@@ -67,11 +84,15 @@ class DataDog {
 		);
 		
 	}
-
+	
+	taskNextId () {
+		this.taskCounter++;
+	}
 	addTask (task) {
 		this.tasks.push(task);
 	}
 
+	// Finished Tasks
 	markFinished (id) {
 		this.tasks.forEach(
 			function(task){
@@ -86,40 +107,35 @@ class DataDog {
 				}
 			}
 		)
-		if (finishedTasks.includes(id)){
-			finishedTasks = finishedTasks.filter(function(value){ return value !== id })
+		if (this.finishedTasks.includes(id)){
+			this.finishedTasks = this.finishedTasks.filter(function(value){ return value !== id })
 		}
 		else{
-			finishedTasks.push(id);
+			this.finishedTasks.push(id);
 		}
 
 			
 	}
 
 	populateFinished () {
-		this.tasks.forEach( 
-			function(task){
-				if (task.isFinished === true){
-					finishedTasks.push(task.id);
-				}
+		
+		for (let i = 0; i < this.tasks.length; i++){
+			if (this.tasks[i].isFinished === true){
+				this.finishedTasks.push(this.tasks[i].id)
 			}
-		);
+		};
 	}
 	getFinishedTasks (callerId) {
+		
 		let filter = [];
-		this.tasks.forEach(
-			function(task){
-				if (finishedTasks.includes(task.id) && task.listId === callerId){
-					filter.push(task.id);
-				}	
+		for (let i = 0; i < this.tasks.length; i++){
+			if (this.finishedTasks.includes(this.tasks[i].id) && this.tasks[i].listId === callerId){
+				filter.push(this.tasks[i].id)
 			}
-		);
+		};
+		
 		return filter; 
 	}
-
-  addList(list) {
-    lists.push(list);
-  }
 }
 
 export default DataDog;
