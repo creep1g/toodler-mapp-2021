@@ -4,11 +4,10 @@ import {
 } from 'react-native';
 import styles from './styles';
 
-const BoardInputHandler = function ({ addBoard, closeModal }) {
+const TaskInputHandler = function ({ addTask, closeModal }) {
   const [inputs, setInputs] = useState({
     name: '',
     description: '',
-    thumbnailPhoto: '',
   });
 
   const inputHandler = (name, value) => {
@@ -21,25 +20,20 @@ const BoardInputHandler = function ({ addBoard, closeModal }) {
   return (
     <View>
       <TextInput
-        placeholder="Enter board name"
+        placeholder="Enter task name"
         value={inputs.name}
         onChangeText={(text) => inputHandler('name', text)}
       />
       <TextInput
-        placeholder="Enter board description"
+        placeholder="Enter description"
         value={inputs.description}
         onChangeText={(text) => inputHandler('description', text)}
       />
-      <TextInput
-        placeholder="Enter thumbnail url"
-        value={inputs.thumbnailPhoto}
-        onChangeText={(text) => inputHandler('thumbnailPhoto', text)}
-      />
       <View style={styles.buttonContainer}>
         <TouchableOpacity
-          onPress={() => addBoard(inputs)}
+          onPress={() => addTask(inputs)}
         >
-          <Text>Add board</Text>
+          <Text>Add Task</Text>
         </TouchableOpacity>
         <TouchableOpacity
           onPress={closeModal}
@@ -52,4 +46,4 @@ const BoardInputHandler = function ({ addBoard, closeModal }) {
   );
 };
 
-export default BoardInputHandler;
+export default TaskInputHandler;

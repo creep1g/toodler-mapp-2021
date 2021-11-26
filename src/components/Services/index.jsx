@@ -1,45 +1,43 @@
-import data from '../../resources/data.json';
 import React, { useState } from 'react';
+import data from '../../resources/data.json';
 
 class DataDog {
-	boards;
-	lists;
-	tasks;
-	finishedTasks;
+  boards;
 
-	constructor () {
-		boards = data.boards;
-		lists = data.lists;
-	}
+  lists;
 
-	getBoards (){
-		return boards;
-	}
-	
-	addBoard (board){
-		boards.push(board)
-	}
+  tasks;
 
-	deleteBoard (id){
-		boards = boards.filter(function(value){
-			return value.id !== id;
-		});
-	}
-	
-	getLists( callerId){
-		return lists.filter( (lists) => lists.boardId !== callerId);
-	}
+  finishedTasks;
 
-	deleteList (id) {
-		lists = lists.filter(function(value) {
-			return value.id !== id;
-		});
-	}
+  constructor() {
+    this.boards = data.boards;
+    this.lists = data.lists;
+  }
 
-	addList (list) {
-		lists.push(list);
-	}
+  getBoards() {
+    return this.boards;
+  }
 
+  addBoard(board) {
+    this.boards.push(board);
+  }
+
+  deleteBoard(id) {
+    this.boards = this.boards.filter((value) => value.id !== id);
+  }
+
+  getLists(callerId) {
+    return this.lists.filter((lists) => lists.boardId !== callerId);
+  }
+
+  deleteList(id) {
+    this.lists = this.lists.filter((value) => value.id !== id);
+  }
+
+  addList(list) {
+    lists.push(list);
+  }
 }
 
 export default DataDog;

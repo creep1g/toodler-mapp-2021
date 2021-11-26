@@ -5,10 +5,9 @@ import SubList from '../../components/SubList';
 import data from '../../resources/data.json';
 import AddModal from '../../components/AddListModal';
 import styles from './styles';
-import BoardData from '../../components/Services/';
+import BoardData from '../../components/Services';
 
 const List = function ({ route, navigation }) {
-
   const { BoardId } = route.params;
 
   const [lists, setLists] = useState(
@@ -29,7 +28,7 @@ const List = function ({ route, navigation }) {
 
   const removeSelectedLists = () => {
     setLists(lists.filter((list) => !selectedLists.includes(list.id)));
-	setSelectedLists([]);
+    setSelectedLists([]);
   };
 
   const addList = (input) => {
