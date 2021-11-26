@@ -62,8 +62,7 @@ const Board = function ({ route, navigation: { navigate } }) {
       <View style={styles.boardList}>
         <BoardList
           onLongPress={(id) => onBoardLongPress(id)}
-          // onBoardPress={(id) => onBoardPress(id)}
-          onSelect={(id) => navigate('List', { BoardId: id })}
+			onSelect={(id) => navigate('List', {data: data, BoardId: id })}
           selectedBoards={selectedBoards}
           boards={boards}
         />

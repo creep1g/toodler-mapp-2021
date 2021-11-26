@@ -2,9 +2,10 @@ import React, { useState, setState, useEffect } from 'react';
 import { View, Text } from 'react-native';
 import Toolbar from '../../components/Toolbar';
 import SubList from '../../components/SubList';
-import data from '../../resources/data.json';
 import AddModal from '../../components/AddListModal';
+
 import styles from './styles';
+<<<<<<< HEAD
 import BoardData from '../../components/Services';
 
 const List = function ({ route, navigation }) {
@@ -13,6 +14,16 @@ const List = function ({ route, navigation }) {
   const [lists, setLists] = useState(
     data.lists.filter((list) => list.boardId === BoardId),
   );
+=======
+
+const List = function ({ route, navigation }) {
+ 
+  const { BoardId } = route.params;  
+
+  let {data} = route.params;
+  
+  const [lists, setLists] = useState(data.getLists(BoardId));
+>>>>>>> aa6b84696d0385fb9ce2d32167504a9f072d58ed
 
   const [selectedLists, setSelectedLists] = useState([]);
 
@@ -28,7 +39,15 @@ const List = function ({ route, navigation }) {
 
   const removeSelectedLists = () => {
     setLists(lists.filter((list) => !selectedLists.includes(list.id)));
+<<<<<<< HEAD
     setSelectedLists([]);
+=======
+	  selectedLists.forEach (
+		  function(listId){
+					  data.deleteList(listId);
+			});
+	setSelectedLists([]);
+>>>>>>> aa6b84696d0385fb9ce2d32167504a9f072d58ed
   };
 
   const addList = (input) => {
@@ -57,7 +76,7 @@ const List = function ({ route, navigation }) {
         BoardId={BoardId}
         onLongPress={(id) => onListLongPress(id)}
         selectedLists={selectedLists}
-        onSelect={(id) => navigation.navigate('Tasks', { ListId: id, BoardId })}
+		  onSelect={(id) => navigation.navigate('Tasks', {data: data, ListId: id, BoardId })}
       />
       <AddModal
         isOpen={isAddModalOpen}

@@ -2,38 +2,120 @@ import React, { useState } from 'react';
 import data from '../../resources/data.json';
 
 class DataDog {
-  boards;
+	boards;
+	lists;
+	tasks;
+	finishedTasks;
 
-  lists;
+	constructor () {
+		this.boards = data.boards;
+		this.lists = data.lists;
+		this.tasks = data.tasks;
+		finishedTasks = [];
+		this.populateFinished();
+	}
+	
+	getBoards () {
+		return this.boards;
+	}
+	
+	addBoard (board) {
+		this.boards.push(board)
+	}
 
-  tasks;
+	deleteBoard (id) {
+		this.boards = this.boards.filter(function(value){
+			return value.id !== id;
+		});
+	}
+	
+	getLists (callerId) {
+		return this.lists.filter(function(value){
+			return value.boardId === callerId;
+		});
+	}
 
-  finishedTasks;
+	deleteList (id) {
+		this.lists = this.lists.filter(function(value) {
+			return value.id !== id;
+		});
+	}
 
-  constructor() {
-    this.boards = data.boards;
-    this.lists = data.lists;
-  }
+	addList (list) {
+		this.lists.push(list);
+	}
 
-  getBoards() {
-    return this.boards;
-  }
+	getTasks (callerId){
+		return this.tasks.filter(function(value){
+			return value.listId === callerId;
+		});
+	}
 
-  addBoard(board) {
-    this.boards.push(board);
-  }
+	deleteTask (id) {
+		this.tasks = this.tasks.filter(function(value) {
+			return value.id !== id;
+		})
+	}
 
-  deleteBoard(id) {
-    this.boards = this.boards.filter((value) => value.id !== id);
-  }
+	moveTask (id, ListId) {
+		this.tasks.forEach(
+			function(task){
+				if (task.id === id){
+					task.listId = ListsId
+				}
+			}
+		);
+		
+	}
 
-  getLists(callerId) {
-    return this.lists.filter((lists) => lists.boardId !== callerId);
-  }
+	addTask (task) {
+		this.tasks.push(task);
+	}
 
-  deleteList(id) {
-    this.lists = this.lists.filter((value) => value.id !== id);
-  }
+	markFinished (id) {
+		this.tasks.forEach(
+			function(task){
+				if (task.id === id){
+					if (task.isFinished === false){
+					task.isFinished = true;
+				
+					}
+					else{
+						task.isFinished = false;
+					}
+				}
+			}
+		)
+		if (finishedTasks.includes(id)){
+			finishedTasks = finishedTasks.filter(function(value){ return value !== id })
+		}
+		else{
+			finishedTasks.push(id);
+		}
+
+			
+	}
+
+	populateFinished () {
+		this.tasks.forEach( 
+			function(task){
+				if (task.isFinished === true){
+					finishedTasks.push(task.id);
+				}
+			}
+		);
+	}
+	getFinishedTasks (callerId) {
+		let filter = [];
+		this.tasks.forEach(
+			function(task){
+				if (finishedTasks.includes(task.id) && task.listId === callerId){
+					filter.push(task.id);
+				}	
+			}
+		);
+		return filter; 
+	}
 
   addList(list) {
     lists.push(list);

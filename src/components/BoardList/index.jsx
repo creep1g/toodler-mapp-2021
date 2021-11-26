@@ -8,7 +8,7 @@ const BoardList = function ({
   return (
     <View style={{ flex: 1 }}>
       <FlatList
-        numColumns={1}
+        numColumns={2}
         data={boards}
         renderItem={({ item: { id, name, thumbnailPhoto } }) => (
           <ImageThumbnail
