@@ -19,6 +19,7 @@ const Toolbar = function ({
       >
         <Text style={styles.toolbarActionText}>
           Add
+		  {' '}
           {name}
         </Text>
       </TouchableHighlight>
