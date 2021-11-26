@@ -26,5 +26,4 @@ AddTaskModal.propTypes = {
   addTask: PropTypes.func.isRequired,
 
 };
-
 export default AddTaskModal;
