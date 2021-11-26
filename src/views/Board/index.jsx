@@ -54,7 +54,7 @@ const Board = function ({ route, navigation: { navigate } }) {
   const getBoard = () => boards.filter((b) => b.id === selectedBoards[0])[0];
 
   const modifyBoard = (input) => {
-    let board = getBoard();
+    const board = getBoard();
     board.name = input.name;
     board.description = input.description;
     board.thumbnailPhoto = input.thumbnailPhoto;
@@ -88,7 +88,6 @@ const Board = function ({ route, navigation: { navigate } }) {
         isOpen={isModifyModalOpen}
         closeModal={() => setIsModifyModalOpen(false)}
         modifyBoard={(input) => modifyBoard(input)}
-        name="board"
         board={getBoard()}
       />
     </View>

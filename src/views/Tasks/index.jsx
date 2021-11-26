@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { View } from 'react-native';
 import Toolbar from '../../components/Toolbar';
 import TaskList from '../../components/TaskList';
-import AddModal from '../../components/AddTaskModal';
+import AddTaskModal from '../../components/AddTaskModal';
+import ModifyTaskModal from '../../components/ModifyTaskModal';
 import styles from './styles';
 
 const Tasks = function ({ route, navigation: { navigate } }) {
@@ -20,6 +21,8 @@ const Tasks = function ({ route, navigation: { navigate } }) {
   const [finishedTasks, setFinishedTasks] = useState(data.getFinishedTasks(ListId));
   // When tasks are marked finished they will be added to finisheTasks
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
+
+  const [isModifyModalOpen, setIsModifyModalOpen] = useState(false);
 
   const addFinished = (id) => {
     if (finishedTasks.indexOf(id) !== -1) {
@@ -56,9 +59,19 @@ const Tasks = function ({ route, navigation: { navigate } }) {
 	  isFinished: false,
 	  listId: ListId,
     };
-	setTasks([...tasks, newTask]);
-	setIsAddModalOpen(false);
-	data.addTask(newTask);
+    setTasks([...tasks, newTask]);
+    setIsAddModalOpen(false);
+    data.addTask(newTask);
+  };
+
+  const getTask = () => tasks.filter((task) => task.id === selectedTasks[0])[0];
+
+  const modifyTask = (input) => {
+    const task = getTask();
+    task.name = input.name;
+    task.description = input.description;
+    task.listId = input.listId;
+    setIsModifyModalOpen(false);
   };
 
   return (
@@ -68,6 +81,7 @@ const Tasks = function ({ route, navigation: { navigate } }) {
         onRemove={() => removeSelectedTasks()}
         name="task"
         onAdd={() => setIsAddModalOpen(true)}
+        onModify={() => setIsModifyModalOpen(true)}
       />
       <View style={styles.container}>
         <TaskList
@@ -79,10 +93,16 @@ const Tasks = function ({ route, navigation: { navigate } }) {
           finishedTasks={finishedTasks}
         />
       </View>
-      <AddModal
+      <AddTaskModal
         isOpen={isAddModalOpen}
         closeModal={() => setIsAddModalOpen(false)}
         addTask={(input) => addTask(input)}
+      />
+      <ModifyTaskModal
+        isOpen={isModifyModalOpen}
+        closeModal={() => setIsModifyModalOpen(false)}
+        modifyTask={(input) => modifyTask(input)}
+        task={getTask()}
       />
     </View>
   );

@@ -4,7 +4,7 @@ import {
 } from 'react-native';
 import styles from '../../styles/inputHandlers';
 
-const ModifyBoardInputHandler = function ({ modifyBoard, closeModal, board}) {
+const ModifyBoardInputHandler = function ({ modifyBoard, closeModal, board }) {
   const [inputs, setInputs] = useState({
     name: board.name,
     description: board.description,
