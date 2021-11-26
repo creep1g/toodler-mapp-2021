@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
-import { Text, View, TextInput, TouchableOpacity, KeyboardAvoidingView } from 'react-native';
+import {
+  Text, View, TextInput, TouchableOpacity, KeyboardAvoidingView,
+} from 'react-native';
 import styles from '../../styles/inputHandlers';
 
 const BoardInputHandler = function ({ addBoard, closeModal }) {
@@ -17,51 +19,52 @@ const BoardInputHandler = function ({ addBoard, closeModal }) {
   };
 
   return (
-	  <KeyboardAvoidingView
-		  behavior="padding"
-	  		enabled={false}>
+    <KeyboardAvoidingView
+      behavior="padding"
+      enabled={false}
+    >
 
-	  <Text style={styles.inputText}>Name</Text>
-	  <TextInput
+      <Text style={styles.inputText}>Name</Text>
+      <TextInput
         placeholder="Enter board name"
-		placeholderTextColor={'gray'}
+        placeholderTextColor="gray"
         value={inputs.name}
         onChangeText={(text) => inputHandler('name', text)}
-		style={styles.input}
+        style={styles.input}
       />
-	  <Text style={styles.inupText}>Description</Text>
+      <Text style={styles.inupText}>Description</Text>
       <TextInput
         placeholder="Enter board description"
-		placeholderTextColor={'gray'}
+        placeholderTextColor="gray"
         value={inputs.description}
         onChangeText={(text) => inputHandler('description', text)}
-		style={styles.input}
+        style={styles.input}
       />
-	  <Text style={styles.inputText}>Image URL</Text>
+      <Text style={styles.inputText}>Image URL</Text>
       <TextInput
-		text="steven"
-		placeholderTextColor={'gray'}
+        text="steven"
+        placeholderTextColor="gray"
         placeholder="Enter thumbnail url"
         value={inputs.thumbnailPhoto}
         onChangeText={(text) => inputHandler('thumbnailPhoto', text)}
-		style={styles.input}
+        style={styles.input}
       />
       <View style={styles.buttonContainer}>
         <TouchableOpacity
           onPress={() => addBoard(inputs)}
-		  style={ styles.shadow, styles.button  }
+          style={styles.shadow, styles.button}
         >
-          <Text style={ styles.text }>Add board</Text>
+          <Text style={styles.text}>Add board</Text>
         </TouchableOpacity>
         <TouchableOpacity
           onPress={closeModal}
-		  style={ styles.shadow, styles.button }
+          style={styles.shadow, styles.button}
         >
-          <Text style={ styles.text }>Cancel</Text>
+          <Text style={styles.text}>Cancel</Text>
         </TouchableOpacity>
       </View>
 
-		</KeyboardAvoidingView>
+    </KeyboardAvoidingView>
   );
 };
 

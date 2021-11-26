@@ -1,5 +1,5 @@
-import {StyleSheet} from 'react-native';
-import {darkerBlue, graniteGray} from '../../styles/colors';
+import { StyleSheet } from 'react-native';
+import { darkerBlue, graniteGray } from '../../styles/colors';
 
 export default StyleSheet.create({
   container: {
@@ -7,11 +7,11 @@ export default StyleSheet.create({
     padding: 20,
     backgroundColor: darkerBlue,
     alignItems: 'center',
-    justifyContent: 'space-around'
+    justifyContent: 'space-around',
   },
   paragraph: {
     textAlign: 'center',
-    color: 'white'
+    color: 'white',
   },
   button: {
     marginTop: 30,
@@ -21,13 +21,13 @@ export default StyleSheet.create({
     paddingRight: 20,
     borderColor: 'white',
     borderWidth: 2,
-    backgroundColor: graniteGray
+    backgroundColor: graniteGray,
   },
   buttonText: {
-    color: 'white'
+    color: 'white',
   },
   logo: {
-    width:200,
-    height:200
-  }
+    width: 200,
+    height: 200,
+  },
 });

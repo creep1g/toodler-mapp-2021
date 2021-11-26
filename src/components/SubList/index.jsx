@@ -2,47 +2,45 @@ import React from 'react';
 import {
   View, FlatList, Text, TouchableOpacity,
 } from 'react-native';
-import styles from './styles';
 import { AntDesign } from '@expo/vector-icons';
+import styles from './styles';
 
 const SubList = function ({
-	lists, onLongPress, selectedLists, onSelect}) {
-	
-	const isSelected = (id) => {
-		if (selectedLists.indexOf(id) !== -1){
-			return true;
-		}
-		else{
-			return false;
-		}
-	};
+  lists, onLongPress, selectedLists, onSelect,
+}) {
+  const isSelected = (id) => {
+    if (selectedLists.indexOf(id) !== -1) {
+      return true;
+    }
 
-	return (
-		<FlatList
-    		numColumns={2}
-      		data={lists}
-      		renderItem={({ item }) => (
-        	<TouchableOpacity
-				style={[styles.list, styles.shadow, { backgroundColor: item.color, opacity: isSelected(item.id) ? .5 : 1}]}
-          	onLongPress={() => onLongPress(item.id)}
-          	onPress={() => onSelect(item.id)} >
-			{
+    return false;
+  };
+
+  return (
+    <FlatList
+      numColumns={2}
+      data={lists}
+      renderItem={({ item }) => (
+        <TouchableOpacity
+          style={[styles.list, styles.shadow, { backgroundColor: item.color, opacity: isSelected(item.id) ? 0.5 : 1 }]}
+          onLongPress={() => onLongPress(item.id)}
+          onPress={() => onSelect(item.id)}
+        >
+          {
 				isSelected(item.id)
-				?
-				<AntDesign name="checkcircleo" style={styles.selected}/>
-				:
-				<></>
+				  ?				<AntDesign name="checkcircleo" style={styles.selected} />
+				  :				<></>
 			}
-          	<View name="listName" style={{ flex: 1 }}>
-            	<Text style={styles.shadow, styles.name}>
-              	{' '}
-              	{ item.name }
-              	{' '}
-            	</Text>
-          	</View>
-        	</TouchableOpacity>
+          <View name="listName" style={{ flex: 1 }}>
+            <Text style={styles.shadow, styles.name}>
+              {' '}
+              { item.name }
+              {' '}
+            </Text>
+          </View>
+        </TouchableOpacity>
       	)}
-      	keyExtractor={(item) => item.id}
+      keyExtractor={(item) => item.id}
     />
   );
 };

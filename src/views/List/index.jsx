@@ -5,12 +5,12 @@ import SubList from '../../components/SubList';
 import AddModal from '../../components/AddListModal';
 
 import styles from './styles';
-const List = function ({ route, navigation }) {
- 
-  const { BoardId } = route.params;  
 
-  let {data} = route.params;
-  
+const List = function ({ route, navigation }) {
+  const { BoardId } = route.params;
+
+  const { data } = route.params;
+
   const [lists, setLists] = useState(data.getLists(BoardId));
 
   const [selectedLists, setSelectedLists] = useState([]);
@@ -27,11 +27,12 @@ const List = function ({ route, navigation }) {
 
   const removeSelectedLists = () => {
     setLists(lists.filter((list) => !selectedLists.includes(list.id)));
-	  selectedLists.forEach (
-		  function(listId){
+	  selectedLists.forEach(
+		  (listId) => {
 					  data.deleteList(listId);
-			});
-	setSelectedLists([]);
+      },
+    );
+    setSelectedLists([]);
   };
 
   const addList = (input) => {
@@ -50,7 +51,7 @@ const List = function ({ route, navigation }) {
   return (
     <View style={styles.container}>
       <Toolbar
-        hasSelected={selectedLists.length > 0}
+        hasSelected={selectedLists.length}
         name="list"
         onRemove={() => removeSelectedLists()}
         onAdd={() => setIsAddModalOpen(true)}
@@ -60,7 +61,7 @@ const List = function ({ route, navigation }) {
         BoardId={BoardId}
         onLongPress={(id) => onListLongPress(id)}
         selectedLists={selectedLists}
-		  onSelect={(id) => navigation.navigate('Tasks', {data: data, ListId: id, BoardId })}
+        onSelect={(id) => navigation.navigate('Tasks', { data, ListId: id, BoardId })}
       />
       <AddModal
         isOpen={isAddModalOpen}

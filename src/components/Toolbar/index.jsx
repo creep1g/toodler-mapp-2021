@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 import styles from './styles';
 
 const Toolbar = function ({
-  hasSelected, name, onAdd, onRemove,
+  hasSelected, name, onAdd, onRemove, onModify,
 }) {
   return (
     <View
@@ -24,10 +24,11 @@ const Toolbar = function ({
       </TouchableHighlight>
       <TouchableHighlight
         style={styles.toolbarAction}
-        disabled={!hasSelected}
+        disabled={hasSelected !== 1}
+        onPress={onModify}
       >
         <Text
-          style={[styles.toolbarActionText, !hasSelected ? { color: 'rgba(155, 155, 155, .5)' } : {}]}
+          style={[styles.toolbarActionText, !(hasSelected === 1) ? { color: 'rgba(155, 155, 155, .5)' } : {}]}
         >
           Modify
           {' '}
@@ -36,11 +37,11 @@ const Toolbar = function ({
       </TouchableHighlight>
       <TouchableHighlight
         style={styles.toolbarAction}
-        disabled={!hasSelected}
+        disabled={!hasSelected > 0}
         onPress={onRemove}
       >
         <Text
-          style={[styles.toolbarActionText, !hasSelected ? { color: 'rgba(155, 155, 155, .5)' } : {}]}
+          style={[styles.toolbarActionText, !(hasSelected > 0) ? { color: 'rgba(155, 155, 155, .5)' } : {}]}
         >
           Delete
           {' '}
@@ -53,9 +54,10 @@ const Toolbar = function ({
 
 Toolbar.propTypes = {
   // Determines whether any boards are currently selected
-  hasSelected: PropTypes.bool.isRequired,
+  hasSelected: PropTypes.number.isRequired,
   onAdd: PropTypes.func.isRequired,
   onRemove: PropTypes.func.isRequired,
+  onModify: PropTypes.func.isRequired,
   name: PropTypes.string.isRequired,
 };
 
